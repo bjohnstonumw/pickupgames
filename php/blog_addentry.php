@@ -14,7 +14,7 @@
 		$lastname = $_POST['lastname'];
 		$blogentry = $_POST['blogentry'];
 		
-		$yourpic = "user_submissions/images/" . $_FILES['userpic']['name'];
+		$yourpic = "user_submissions/" . $_FILES['userpic']['name'];
 		move_uploaded_file($_FILES['userpic']['tmp_name'], $yourpic);
 		
 		$query = "INSERT INTO blog VALUES (null, '";

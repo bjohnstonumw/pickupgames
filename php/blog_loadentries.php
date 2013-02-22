@@ -8,7 +8,7 @@
 	*/
 	
 	include('db_connect.php');					
-	$query = "select * from blog";
+	$query = "SELECT * FROM blog ORDER BY sdate DESC";
 	
 	$result = mysqli_query($db, $query)
 		 or die("Error Querying Database");
