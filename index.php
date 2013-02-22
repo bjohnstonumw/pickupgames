@@ -1,9 +1,21 @@
 <!DOCTYPE HTML>
 <!--
+	Modified version of HTML5 Up template:
+	
 	Halcyonic 2.5 by HTML5 Up!
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	PHP and Modified HTML by:
+	@Author: Josiah Neuberger
+	@Author: Maddie Lord
+	@Author: Michael Wang
+	@Author: Brian Johnston
 -->
+
+
+<?php include 'php/session_start_loggedin.php'; ?>
+
 <html>
 	<head>
 		<title>Get in the Game: A Pickup Sports Game Site</title>
@@ -43,9 +55,20 @@
 							<div class="6u">
 							
 								<!-- Banner Copy -->
-									<p>New Here? Register an account. Or if you are returning you can login</p>
-									<a href="#" class="button-big">Register!</a>
-									<a href="#" class="button-big">Login!</a>
+									
+									
+									<?php
+									if ($s_isLoggedIn) { 
+										echo '<p>Welcome Back, ' . $s_username . '!</p>
+											<a href="php/users.php?action=logoff" class="button-big">Logoff</a>'; 
+									}
+									else { 
+										echo '<p>New Here? Register an account. Or if you are returning you can login</p>
+											<a href="login.php?action=createAccount" class="button-big">Register!</a>
+											<a href="login.php" class="button-big">Login!</a>';
+									}
+			
+									?>
 
 							</div>
 							<div class="6u">
@@ -266,7 +289,7 @@
 
 		<!-- Copyright -->
 			<div id="copyright">
-				&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 Up!</a> | Images: <a href="http://fotogrph.com">Fotogrph</a>
+				&copy; Untitled. All rights reserved. | Design: <a href="http://html5up.net">HTML5 Up!</a> | Images: <a href="http://fotogrph.com">Fotogrph</a> | <a href="credits.php" class="button-big">Credits!</a>
 			</div>
 
 	</body>

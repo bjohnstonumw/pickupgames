@@ -31,3 +31,11 @@ CREATE TABLE IF NOT EXISTS blog (
   pic VARCHAR(50),
   PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(12) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `zipcode` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+);
