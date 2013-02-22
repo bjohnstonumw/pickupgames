@@ -1,12 +1,20 @@
 <!DOCTYPE HTML>
 <!--
+	Modified version of HTML5 Up template:
+	
 	Halcyonic 2.5 by HTML5 Up!
 	html5up.net | @n33co
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	PHP and Modified HTML by:
+	@Author: Josiah Neuberger
+	@Author: Maddie Lord
+	@Author: Michael Wang
+	@Author: Brian Johnston
 -->
 <html>
 	<head>
-		<title>Halcyonic: A Responsive HTML5 Site Template by HTML5 Up! (One Column)</title>
+		<title>Get in the Game: Blogging about Pickup Sports</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -21,18 +29,17 @@
 			<div id="header-wrapper">
 				<header id="header" class="5grid-layout">
 					<div class="row">
-						<div class="12u">
+						<div class="10u">
 
 							<!-- Logo -->
-								<h1><a href="#" class="mobileUI-site-name">Halcyonic</a></h1>
+								<h1><a href="#" class="mobileUI-site-name">Get in the Game</a></h1>
 							
 							<!-- Nav -->
 								<nav class="mobileUI-site-nav">
-									<a href="index.html">Homepage</a>
-									<a href="threecolumn.html">Three Column</a>
-									<a href="twocolumn1.html">Two Column #1</a>
-									<a href="twocolumn2.html">Two Column #2</a>
-									<a href="onecolumn.html">One Column</a>
+									<a href="index.php">Homepage</a>
+									<a href="football.php">Football Pickup Games</a>
+									<a href="blog.php">Blog</a>
+									<a href="example-form.php">Example Form</a>
 								</nav>
 
 						</div>
@@ -45,23 +52,39 @@
 				<div id="content">
 					<div class="5grid-layout">
 						<div class="row">
-							<div class="12u">
+							<div class="10u">
 							
 								<!-- Main Content -->
-									<section>
-										<header>
-											<h2>One Column</h2>
-											<h3>A generic one column layout</h3>
-										</header>
-										<p>
-											Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam metus, congue 
-											vel suscipit ut, dignissim non risus. Vestibulum ante est, fringilla nec placerat 
-											eu, vestibulum vitae diam. Integer eget egestas eros. Duis enim erat, mollis quis 
-											lacinia eget, blandit nec ipsum. Donec vitae turpis ipsum. Aliquam mauris libero, 
-											sagittis in eleifend at, mattis imperdiet velit. Donec urna risus, rutrum molestie 
-											varius ac, lacinia sit amet augue. Nam ultrices elementum eros.
-										</p>
-										<p>
+									<section style="background:url(css/images/whitepaper.png); padding: 35px 15px 15px 120px">
+										<section style="background:none; border:6.5px inset gray; width:625px">
+											<header>
+												<h2>Create a New Blog Entry</h2>
+												<h3>Have something interesting to say about Pickup Sports?</h3>
+											</header>
+											
+												<form method = "post" action = "blog.php" enctype="multipart/form-data">
+													<table>
+														<tr><td>First Name</td><td><input type="text" id="firstname" name="firstname" /></td></tr>
+														<tr><td>Last Name</td><td><input type="text" id="lastname" name="lastname" /></td></tr>
+														<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=70 >"Type Blog Entry Here" </textarea> </td></tr>
+														
+														<tr><td>Sports Pic</td><td><input type="file" id="userpic" name="userpic" accept="image/*" /></td></tr>
+														
+														<tr><td><input type="submit" name="submit_addblogentry" value="Add Blog Entry" /></td><td>&nbsp;</td></tr>
+
+													</table>
+													
+												</form>
+
+										</section>
+										
+										<?php 
+											include 'php/db_connect.php';
+											include 'php/blog_loadentries.php';
+											include 'php/blog_addentry.php';
+										?>
+									
+										<!-- <p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
 											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
 											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
 											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
@@ -71,16 +94,10 @@
 											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
 											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
 											hendrerit.
+											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
 										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio 
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor. 							
-										</p>
-										<p>
+									
+										<p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
 											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
 											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
 											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
@@ -90,16 +107,10 @@
 											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
 											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
 											hendrerit.
-										</p>
-										<p>
-											Mauris sit amet tellus urna. In facilisis, tortor vitae ultricies egestas, odio 
-											mi rhoncus arcu, quis euismod felis felis et velit. Mauris varius consectetur erat 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											iaculis. Phasellus ultrices diam sit amet orci lacinia sed consequat dui auctor. 							
-										</p>
+											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
+										</p>-->
 									</section>
+
 
 							</div>
 						</div>
@@ -107,71 +118,9 @@
 				</div>
 			</div>
 
-		<!-- Footer -->
-			<div id="footer-wrapper">
-				<footer id="footer" class="5grid-layout">
-					<div class="row">
-						<div class="8u">
-						
-							<!-- Links -->
-								<section>
-									<h2>Links to Important Stuff</h2>
-									<div class="5grid">
-										<div class="row">
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-										</div>
-									</div>
-								</section>
+		<!-- Footer Deleted for this page-->
 
-						</div>
-						<div class="4u">
-							
-							<!-- Blurb -->
-								<section>
-									<h2>An Informative Text Blurb</h2>
-									<p>
-										Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse eu 
-										varius nibh. Suspendisse vitae magna eget odio amet mollis. Duis neque nisi, 
-										dapibus sed mattis quis, sed rutrum accumsan sed. Suspendisse eu varius nibh 
-										lorem ipsum amet dolor sit amet lorem ipsum consequat gravida justo mollis.
-									</p>
-								</section>
-						
-						</div>
-					</div>
-				</footer>
-			</div>
+		
 
 		<!-- Copyright -->
 			<div id="copyright">

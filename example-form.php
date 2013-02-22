@@ -30,6 +30,7 @@
 								<nav class="mobileUI-site-nav">
 									<a href="index.php">Homepage</a>
 									<a href="football.php">Football Pickup Games</a>
+									<a href="blog.php">Blog</a>
 									<a href="example-form.php">Example Form</a>
 								</nav>
 

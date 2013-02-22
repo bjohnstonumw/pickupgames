@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS pickupgames;
-GRANT ALL PRIVILEGES ON pickupgames.* to 'pickugameuser22'@'localhost' identified by 'pickupgames';
+GRANT ALL PRIVILEGES ON pickupgames.* to 'pickupgameuser22'@'localhost' identified by 'pickup';
 USE pickupgames;
 CREATE TABLE IF NOT EXISTS basicusers (
   id int NOT NULL auto_increment,
@@ -22,7 +22,7 @@ FROM dual
 WHERE not exists (select * from basicusers
                   where basicusers.id = 1);
 
-CREATE TABLE IF NOT EXISTS blogentry (
+CREATE TABLE IF NOT EXISTS blog (
   id int NOT NULL auto_increment,
   firstname VARCHAR(25),
   lastname VARCHAR(25),
