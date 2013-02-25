@@ -74,7 +74,7 @@
 							<div class="6u">
 								
 								<!-- Banner Image -->
-									<a href="#" class="bordered-feature-image"><img src="images/banner.jpg" alt="" /></a>
+									<a  class="bordered-feature-image"><img src="images/sports.jpg" alt="" /></a>
 							
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 							
 								<!-- Feature #1 -->
 									<section>
-										<a href="football.html" class="bordered-feature-image"><img src="images/football.jpg" alt="" /></a>
+										<a href="football.php" class="bordered-feature-image"><img src="images/football.jpg" alt="" /></a>
 										<h2>Football</h2>
 										<p>
 											This is <strong>Football</strong>, for starting a pick- 
@@ -106,12 +106,13 @@
 								
 								<!-- Feature #2 -->
 									<section>
-										<a href="#" class="bordered-feature-image"><img src="images/pic02.jpg" alt="" /></a>
-										<h2>Responsive You Say?</h2>
+										<a href="baseball.php" class="bordered-feature-image"><img src="images/baseball.jpg" alt="" /></a>
+										<h2>Baseball</h2>
 										<p>
-											Yes! Halcyonic is built on the <a href="http://n33.co/5grid/">5grid</a>
-											framework, so it has full responsive support for desktop, tablet,
-											and mobile device displays.
+											This is <strong>Baseball</strong>, for starting a pick- 
+											up <a href="http://n33.co/">game.</a> for joining
+											an existing <a href="http://html5up.net">game.</a>
+											Bring your own equipment.
 										</p>
 									</section>
 
@@ -120,12 +121,13 @@
 								
 								<!-- Feature #3 -->
 									<section>
-										<a href="#" class="bordered-feature-image"><img src="images/pic03.jpg" alt="" /></a>
-										<h2>License Info</h2>
+										<a href="basketball.php" class="bordered-feature-image"><img src="images/basketball.jpg" alt="" /></a>
+										<h2>Basketball</h2>
 										<p>
-											Halcyonic is licensed under the <a href="http://html5up.net/license">CCA 3.0</a> license,
-											so use it for personal or commercial use as much as you like (just keep
-											the footer credit intact).
+											This is <strong>Basketball</strong>, for starting a pick- 
+											up <a href="http://n33.co/">game.</a> for joining
+											an existing <a href="http://html5up.net">game.</a>
+											Bring your own equipment.
 										</p>
 									</section>
 
@@ -134,11 +136,13 @@
 								
 								<!-- Feature #4 -->
 									<section>
-										<a href="#" class="bordered-feature-image"><img src="images/pic04.jpg" alt="" /></a>
-										<h2>Volutpat etiam aliquam</h2>
+										<a href="soccer.php" class="bordered-feature-image"><img src="images/soccer.jpg" alt="" /></a>
+										<h2>Soccer</h2>
 										<p>
-											Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. Suspendisse 
-											eu varius nibh. Suspendisse vitae magna eget odio amet mollis.
+											This is <strong>Soccer</strong>, for starting a pick- 
+											up <a href="http://n33.co/">game.</a> for joining
+											an existing <a href="http://html5up.net">game.</a>
+											Bring your own equipment.
 										</p>
 									</section>
 
@@ -159,13 +163,13 @@
 									<section>
 										<header>
 											<h2>Who We Are</h2>
-											<h3>A subheading about who we are</h3>
+											<h3>An Awesome Group of People</h3>
 										</header>
-										<a href="#" class="feature-image"><img src="images/pic05.jpg" alt="" /></a>
+										<a  class="feature-image"><img src="images/group.jpg" alt="" /></a>
 										<p>
-											Duis neque nisi, dapibus sed mattis quis, rutrum accumsan sed. 
-											Suspendisse eu varius nibh. Suspendisse vitae magna eget odio amet mollis 
-											justo facilisis quis. Sed sagittis mauris amet tellus gravida lorem ipsum.
+											Brian, Maddie, Michael, and Josiah are 4 UMW Computer Science
+											Students who have created this site. We are doing this as a 
+											database course project.
 										</p>
 									</section>
 
@@ -176,15 +180,12 @@
 									<section>
 										<header>
 											<h2>What We Do</h2>
-											<h3>A subheading about what we do</h3>
+											<h3>We Play Sports</h3>
 										</header>
-										<ul class="check-list">
-											<li>Sed mattis quis rutrum accum</li>
-											<li>Eu varius nibh suspendisse lorem</li>
-											<li>Magna eget odio amet mollis justo</li>
-											<li>Facilisis quis sagittis mauris</li>
-											<li>Amet tellus gravida lorem ipsum</li>
-										</ul>
+										<a  class="feature-image"><img src="images/pic05.jpg" alt="" /></a>
+										<p>
+											We really don't.
+										</p>
 									</section>
 
 							</div>
@@ -194,23 +195,28 @@
 									<section>
 										<header>
 											<h2>What People Are Saying</h2>
-											<h3>And a final subheading about our clients</h3>
+											<h3>By People We Mean Us</h3>
 										</header>
 										<ul class="quote-list">
 											<li>
-												<img src="images/pic06.jpg" alt="" />
+												<img src="images/brian.jpg" alt="" />
 												<p>"Neque nisidapibus mattis"</p>
-												<span>Jane Doe, CEO of UntitledCorp</span>
+												<span>Brian Johnston, Scrum Master of Get in the Game</span>
 											</li>
 											<li>
-												<img src="images/pic07.jpg" alt="" />
+												<img src="images/josiah.jpg" alt="" />
 												<p>"Lorem ipsum consequat!"</p>
-												<span>John Doe, President of FakeBiz</span>
+												<span>Josiah Neuberger, President of Get in the Game</span>
 											</li>
 											<li>
-												<img src="images/pic08.jpg" alt="" />
+												<img src="images/maddie.jpg" alt="" />
 												<p>"Magna veroeros amet tempus"</p>
-												<span>Mary Smith, CFO of UntitledBiz</span>
+												<span>Maddie Lord, Head Programmer of Get in the Game</span>
+											</li>
+											<li>
+												<img src="images/michael.jpg" alt="" />
+												<p>"Magna veroeros amet tempus"</p>
+												<span>Michael Wang, Product Owner of Get in the Game</span>
 											</li>
 										</ul>
 									</section>
@@ -234,36 +240,13 @@
 										<div class="row">
 											<div class="3u">
 												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
+													<li><a href="football.php">Football Rules and Regulation</a></li>
+													<li><a href="baseball.php">Baseball Rules and Regulation</a></li>
+													<li><a href="basketball.php">Basketball Rules and Regulation</a></li>
+													<li><a href="soccer.php">Soccer Rules and Regulation</a></li>
 												</ul>
 											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
-											<div class="3u">
-												<ul class="link-list last-child">
-													<li><a href="#">Neque amet dapibus</a></li>
-													<li><a href="#">Sed mattis quis rutrum</a></li>
-													<li><a href="#">Accumsan suspendisse</a></li>
-													<li><a href="#">Eu varius vitae magna</a></li>
-												</ul>
-											</div>
+
 										</div>
 									</div>
 								</section>

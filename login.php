@@ -53,7 +53,7 @@ session_start();
 						<div class="10u">
 
 							<!-- Logo -->
-								<h1><a href="#" class="mobileUI-site-name">Get in the Game</a></h1>
+								<h1><a href="index.php" class="mobileUI-site-name">Get in the Game</a></h1>
 							
 							<!-- Nav -->
 								<nav class="mobileUI-site-nav">

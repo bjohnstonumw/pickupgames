@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Football</title>
+		<title>Baseball</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -29,7 +29,7 @@
 							<!-- Nav -->
 								<nav class="mobileUI-site-nav">
 									<a href="index.php">Homepage</a>
-									<a href="football.php">Football Pickup Games</a>
+									<a href="baseball.php">Baseball Pickup Games</a>
 									<a href="blog.php">Blog</a>
 									<a href="example-form.php">Example Form</a>
 								</nav>
@@ -49,11 +49,11 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Football</h2>
-											<h3>Pick Up Football Rules</h3>
+											<h2>Baseball</h2>
+											<h3>Pick Up Baseball Rules</h3>
 										</header>
 										<p>
-											Basic football rules for beginners:					
+											Basic baseball rules for beginners:					
 										</p>
 									</section>
 
