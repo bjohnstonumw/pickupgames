@@ -41,9 +41,9 @@
 							<!-- Nav -->
 								<nav class="mobileUI-site-nav">
 									<a href="index.php">Homepage</a>
-									<a href="football.php">Football Pickup Games</a>
+									<a href="event.php">Event</a>
+									<a href="joinevent.php">Join a Pickup Game</a>
 									<a href="blog.php">Blog</a>
-									<a href="example-form.php">Example Form</a>
 								</nav>
 
 						</div>

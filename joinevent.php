@@ -14,7 +14,7 @@
 -->
 <html>
 	<head>
-		<title>Get in the Game: Blogging about Pickup Sports</title>
+		<title>Get in the Game: Join an Event</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -52,14 +52,12 @@
 							<div class="10u">
 							
 								<!-- Main Content -->
-									<section style="background:url(css/images/whitepaper.png); padding: 35px 15px 15px 120px">
-										<section style="background:none; border:6.5px inset gray; width:625px">
-											<header>
-												<h2>Create a New Blog Entry</h2>
-												<h3>Have something interesting to say about Pickup Sports?</h3>
-											</header>
+									<section>
+										<header>
+											<h2>Join an Event></h2>
+										</header>
 											
-												<form method = "post" action = "blog.php" enctype="multipart/form-data">
+												<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
 													<table>
 														<tr><td>First Name</td><td><input type="text" id="firstname" name="firstname" /></td></tr>
 														<tr><td>Last Name</td><td><input type="text" id="lastname" name="lastname" /></td></tr>
@@ -76,36 +74,20 @@
 										</section>
 										
 										<?php 
-											include 'php/db_connect.php';
-											include 'php/blog_loadentries.php';
-											include 'php/blog_addentry.php';
+											
+											if (isset( $_POST['submit_addblogentry'] )) {
+											
+												include 'php/db_connect.php';
+												
+												
+												echo "<section>";
+												
+												echo "</section>";
+												
+												echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
+											}
 										?>
-									
-										<!-- <p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
-										</p>
-									
-										<p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
-										</p>-->
+
 									</section>
 
 

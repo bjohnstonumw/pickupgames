@@ -32,10 +32,28 @@ CREATE TABLE IF NOT EXISTS blog (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(12) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `zipcode` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS users (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  username varchar(12) NOT NULL,
+  password varchar(100) NOT NULL,
+  zipcode int(11) NOT NULL,
   PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE IF NOT EXISTS events (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  name varchar(30) DEFAULT NULL,
+  event_date date DEFAULT NULL,
+  event_time time DEFAULT NULL,
+  location varchar(30) DEFAULT NULL,
+  zip varchar(5) DEFAULT NULL,
+  sport_type varchar(15) DEFAULT NULL,
+  ad blob,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE IF NOT EXISTS jevents (
+	username varchar(12) NOT NULL,
+	eventid int(11) NOT NULL
 );
