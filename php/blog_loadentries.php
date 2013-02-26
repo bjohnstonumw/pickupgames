@@ -15,7 +15,6 @@
 
 	foreach ($result as $row) {
 		Echo "<p style='padding: 15px; border-left: 4px solid black; border-bottom: 6px double black'>" . $row['content'] . "<br><br>
-			<img src=\"" .  $row['pic'] . "\" alt=\"Awww, No Pic!\">
-			<blockquote style='text-align:right; font-size:1.5em'>~" . $row['firstname'] . " " . $row['lastname'] . " @" . $row['sdate'] . "</blockquote></p><br><br>";
+			<blockquote style='text-align:right; font-size:1.5em'>~" . $row['username'] . " " . " @" . $row['sdate'] . "</blockquote></p><br><br>";
 	}
 ?>

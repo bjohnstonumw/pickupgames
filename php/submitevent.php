@@ -1,7 +1,3 @@
-<html>
-<head>
-</head>
-<body>
 <?php
 $db = mysqli_connect('localhost', 'pickupgameuser22', 'pickup', 'pickupgames')
         or die ("ERROR: connecting to mysql server!");
@@ -30,9 +26,9 @@ $floc = $row['location'];
 $fzip = $row['zip'];
 $fsport = $row['sport_type'];
 $fad = $row['ad'];
-echo "<tr><td >$fname</td><td >$fdate</td><td >$floc</td><td >$fzip</td><td >$fsport</td><td >$fad</td></tr>\n";
+#echo "<tr><td >$fname</td><td >$fdate</td><td >$floc</td><td >$fzip</td><td >$fsport</td><td >$fad</td></tr>\n";
 }
 
+echo '<META http-equiv="refresh" content="0;URL=../event.php">';
+
 ?>
-</body>
-</html>

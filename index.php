@@ -42,7 +42,7 @@
 								<nav class="mobileUI-site-nav">
 									<a href="index.php">Homepage</a>
 									<a href="event.php">Event</a>
-									<a href="joinevent.php">Join a Pickup Game</a>
+									<?php if ($s_isLoggedIn) { echo '<a href="joinevent.php">Join a Pickup Game</a>'; } #Only show if we are logged in.?>
 									<a href="blog.php">Blog</a>
 								</nav>
 

@@ -84,7 +84,7 @@ session_start();
 											break;
 										case 'newAccount':
 											echo "<h2>Create Account</h2>";
-											echo "<form method='post' action='login2.php'>";
+											echo '<form method="post" action="php/user.php?action=createAccount">';
 											echo "<p>I'm sorry you're account could not be created. Please try again<p>";
 											break;
 										case 'loginFailed':

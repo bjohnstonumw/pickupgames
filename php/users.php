@@ -2,7 +2,7 @@
 
 	#@author Josiah Neuberger modified from my sessionDemo code.
 
-	session_start();
+	if (!isset($_SESSSION)) { session_start(); } #This checks to see if the session_start() has not been called.
 	
 	#Call the correct function:
 	if (!isset($_GET['action'])) { $_GET['action'] = "default"; }
@@ -52,14 +52,14 @@
 				if (isset($_SESSION['attemptCount'])) {$_SESSION['attemptCount'] += 1; }
 				else $_SESSION['attemptCount'] = 1;
 				
-				echo '<META http-equiv="refresh" content="0;URL=../login2.php?action=loginFailed">';
+				echo '<META http-equiv="refresh" content="0;URL=../login.php?action=loginFailed">';
 			}
 		}
 	}
 	
 	function web_CreateAccount() {
 		include "db_connect.php";
-		$bad_user = '<META http-equiv="refresh" content="0;URL=../login2.php?action=newAccount">';
+		$bad_user = '<META http-equiv="refresh" content="0;URL=../login.php?action=newAccount">';
 		$p_zipcode = fix_check_zip($_POST['zipcode']);
 		
 		if (isset($_POST['username']) and isset($_POST['pw']) and $p_zipcode != false){

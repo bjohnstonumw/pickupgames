@@ -53,50 +53,80 @@
 							<div class="10u">
 							
 								<!-- Main Content -->
+								
+									<?php include 'php/db_connect.php'; ?>
 									<section>
 										<header>
 											<h2>Join an Event</h2>
 										</header>
 											
-												<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
-													<table>
-														<tr><td>Name of the Event</td><td><input type="text" id="eventname" name="eventname" /></td></tr>
-														
-														<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
+										<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
+											<table>
+												<!--<tr><td>Name of the Event</td><td>&nbsp;</td><td><input type="text" id="eventname" name="eventname" /></td></tr>-->
+												<tr><td>Name of the Event</td><td>&nbsp;</td><td><select name="eventname">
+												<?php
+													$query = "SELECT * FROM events ORDER BY event_date DESC LIMIT 10";
 
-													</table>
+													$result = mysqli_query($db, $query) or die("Error Querying Database for events from joinevent.php");
 													
-												</form>
+													
+													while($row = mysqli_fetch_array($result)) {
+														$event_name = $row['name'];
+														echo "<option value='$event_name'>$event_name";
+													}
+													echo "</select>";
+												?>
+												<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
 
-										</section>
-										
-										<?php 
+											</table>
 											
-											if (isset( $_POST['join_event'] ) and '$s_isLoggedIN' == true) {
-
-												include 'php/db_connect.php';
-
-												echo "<section>";
-												$ename = mysqli_real_escape_string($db, trim($_POST['eventname']));
-												$uname = $s_username;
-												$result = mysqli_query($db, "SELECT id FROM events WHERE name = '$ename'");
-												if (!$result) {
-												    echo 'Could not run query: ' . mysqli_error();
-												    exit;
-												}
-												$row = mysqli_fetch_row($result);
-												$eid = $row[0];
-												$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
-
-												$result2 = mysqli_query($db,$query) or die("Error Querying Database: Join Event Result1");
-												echo "</section>";
-
-												echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
-												echo $eid; 
-											}
-										?>
+										</form>
 
 									</section>
+										
+									<?php 
+									
+										
+										/*	#Don't really need with the events being pulled into the dropdown box above.
+										echo "<section><header><h2>Listing of Most Recent Events (Top 10)</h2></header>";
+											
+										$query = "SELECT * FROM events ORDER BY event_date DESC LIMIT 10";
+
+										$result = mysqli_query($db, $query) or die("Error Querying Database");
+										echo "<table id='events' class='test'><tr><td>ID</td><td>Name</td><tr>\n\n";
+										while($row = mysqli_fetch_array($result)) {
+											$event_id = $row['id'];
+											$event_name = $row['name'];
+											echo "<tr class='test'><td>$event_id</td><td>$event_name</td></tr>\n";
+										}
+										echo "</table>\n"; 
+										echo "</section>";*/
+										
+										if (isset( $_POST['join_event'] ) and '$s_isLoggedIN' == true) {
+
+											
+											
+											echo "<section>";
+											$ename = mysqli_real_escape_string($db, trim($_POST['eventname']));
+											$uname = $s_username;
+											$result = mysqli_query($db, "SELECT id FROM events WHERE name = '$ename'");
+											if (!$result) {
+												echo 'Could not run query: ' . mysqli_error();
+												exit;
+											}
+											$row = mysqli_fetch_row($result);
+											$eid = $row[0];
+											$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
+
+											$result2 = mysqli_query($db,$query) or die("Error Querying Database: Join Event Result1");
+											echo "</section>";
+
+											echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
+											echo $eid; 
+										}
+									?>
+
+									
 
 
 							</div>

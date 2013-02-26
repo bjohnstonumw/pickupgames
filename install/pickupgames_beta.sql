@@ -24,11 +24,9 @@ WHERE not exists (select * from basicusers
 
 CREATE TABLE IF NOT EXISTS blog (
   id int NOT NULL auto_increment,
-  firstname VARCHAR(25),
-  lastname VARCHAR(25),
+  username VARCHAR(12),
   sdate TIMESTAMP NOT NULL DEFAULT NOW(),
   content BLOB,
-  pic VARCHAR(50),
   PRIMARY KEY (id)
 );
 
@@ -57,3 +55,21 @@ CREATE TABLE IF NOT EXISTS jevents (
 	username varchar(12) NOT NULL,
 	eventid int(11) NOT NULL
 );
+
+/*
+*Import the US Zip Code Database into Table us_zips.
+*WARNING: Drops the table if it already exists and loads the data from scratch
+*
+* Uses external database file zipcodes.csv
+*/
+DROP TABLE IF EXISTS us_zips;
+
+CREATE TABLE us_zips (
+  zip varchar(5) DEFAULT NULL,
+  city varchar(64) DEFAULT NULL,
+  statecode char(2) DEFAULT NULL,
+  latitude float DEFAULT NULL,
+  longitude float DEFAULT NULL
+);
+
+LOAD DATA LOCAL INFILE 'zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';

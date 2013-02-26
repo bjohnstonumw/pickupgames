@@ -12,6 +12,9 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
+
+<?php include 'php/session_start_loggedin.php'; ?>
+
 <html>
 	<head>
 		<title>Get in the Game: Blogging about Pickup Sports</title>
@@ -53,59 +56,39 @@
 							
 								<!-- Main Content -->
 									<section style="background:url(css/images/whitepaper.png); padding: 35px 15px 15px 120px">
-										<section style="background:none; border:6.5px inset gray; width:625px">
-											<header>
-												<h2>Create a New Blog Entry</h2>
-												<h3>Have something interesting to say about Pickup Sports?</h3>
-											</header>
-											
-												<form method = "post" action = "blog.php" enctype="multipart/form-data">
-													<table>
-														<tr><td>First Name</td><td><input type="text" id="firstname" name="firstname" /></td></tr>
-														<tr><td>Last Name</td><td><input type="text" id="lastname" name="lastname" /></td></tr>
-														<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=70 >"Type Blog Entry Here" </textarea> </td></tr>
-														
-														<tr><td>Sports Pic</td><td><input type="file" id="userpic" name="userpic" accept="image/*" /></td></tr>
-														
-														<tr><td><input type="submit" name="submit_addblogentry" value="Add Blog Entry" /></td><td>&nbsp;</td></tr>
+									
+									<?php
+										include 'php/db_connect.php';
+									
+										if ($s_isLoggedIn) { 
+											echo '<section style="background:none; border:6.5px inset gray; width:625px">
+												<header>
+													<h2>Create a New Blog Entry</h2>
+													<h3>Have something interesting to say about Pickup Sports?</h3>
+												</header>
+												
+													<form method = "post" action = "blog.php" enctype="multipart/form-data">
+														<table>
+															<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=70 >"Type Blog Entry Here" </textarea> </td></tr>
+															
+															<tr><td><input type="submit" name="submit_addblogentry" value="Add Blog Entry" /></td><td>&nbsp;</td></tr>
 
-													</table>
-													
-												</form>
+														</table>
+														
+													</form>
 
-										</section>
+											</section>';
 										
-										<?php 
-											include 'php/db_connect.php';
-											include 'php/blog_loadentries.php';
 											include 'php/blog_addentry.php';
-										?>
-									
-										<!-- <p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
-										</p>
-									
-										<p style="padding: 15px; border-left: 4px solid black; border-bottom: 6px double black">
-											Sed faucibus viverra ligula, non varius magna semper vitae. Donec eu justo ut ipsum 
-											hendrerit congue nec eu risus. Cum sociis natoque penatibus et magnis dis parturient 
-											montes, nascetur ridiculus mus. Lorem ipsum dolor sit amet, consectetur adipiscing 
-											egestas tempus. Cras convallis odio sit amet risus convallis porttitor. Integer 
-											vehicula fermentum ligula at pretium. Suspendisse semper iaculis eros, eu aliquam 
-											justo imperdiet vel. Proin nec dictum mi. Duis commodo enim non tellus interdum 
-											elit. Suspendisse fermentum adipiscing nisi, a tempor libero malesuada at. Morbi 
-											lacinia dui adipiscing risus eleifend tincidunt. Proin eu mauris eu tellus eleifend 
-											hendrerit.
-											<blockquote style="text-align:right; font-size:1.5em">~Josiah Neuberger @830948230984029384</blockquote>
-										</p>-->
+										}
+										else {
+											echo '<p>New Here? Register an account so you can post on our cool blog.</p>
+												<a href="login.php?action=createAccount">Register!</a>
+												<a href="login.php">Already a member: Login Here!</a>';
+										}
+
+										include 'php/blog_loadentries.php';
+									?>
 									</section>
 
 
