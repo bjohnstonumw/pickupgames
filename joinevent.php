@@ -12,6 +12,7 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
+<?php include 'php/session_start_loggedin.php';?>
 <html>
 	<head>
 		<title>Get in the Game: Join an Event</title>
@@ -54,18 +55,14 @@
 								<!-- Main Content -->
 									<section>
 										<header>
-											<h2>Join an Event></h2>
+											<h2>Join an Event</h2>
 										</header>
 											
 												<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
 													<table>
-														<tr><td>First Name</td><td><input type="text" id="firstname" name="firstname" /></td></tr>
-														<tr><td>Last Name</td><td><input type="text" id="lastname" name="lastname" /></td></tr>
-														<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=70 >"Type Blog Entry Here" </textarea> </td></tr>
+														<tr><td>Name of the Event</td><td><input type="text" id="eventname" name="eventname" /></td></tr>
 														
-														<tr><td>Sports Pic</td><td><input type="file" id="userpic" name="userpic" accept="image/*" /></td></tr>
-														
-														<tr><td><input type="submit" name="submit_addblogentry" value="Add Blog Entry" /></td><td>&nbsp;</td></tr>
+														<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
 
 													</table>
 													
@@ -75,16 +72,27 @@
 										
 										<?php 
 											
-											if (isset( $_POST['submit_addblogentry'] )) {
-											
+											if (isset( $_POST['join_event'] ) and '$s_isLoggedIN' == true) {
+
 												include 'php/db_connect.php';
-												
-												
+
 												echo "<section>";
-												
+												$ename = mysqli_real_escape_string($db, trim($_POST['eventname']));
+												$uname = $s_username;
+												$result = mysqli_query($db, "SELECT id FROM events WHERE name = '$ename'");
+												if (!$result) {
+												    echo 'Could not run query: ' . mysqli_error();
+												    exit;
+												}
+												$row = mysqli_fetch_row($result);
+												$eid = $row[0];
+												$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
+
+												$result2 = mysqli_query($db,$query) or die("Error Querying Database: Join Event Result1");
 												echo "</section>";
-												
+
 												echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
+												echo $eid; 
 											}
 										?>
 
