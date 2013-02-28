@@ -41,8 +41,12 @@
 							<!-- Nav -->
 								<nav class="mobileUI-site-nav">
 									<a href="index.php">Homepage</a>
-									<a href="event.php">Event</a>
-									<?php if ($s_isLoggedIn) { echo '<a href="joinevent.php">Join a Pickup Game</a>'; } #Only show if we are logged in.?>
+									<?php
+									if ($s_isLoggedIn) { #Only show if we are logged in.
+										echo '<a href="event.php">Event</a>';
+										echo '<a href="joinevent.php">Join a Pickup Game</a>'; 
+									} 
+									?>
 									<a href="blog.php">Blog</a>
 								</nav>
 
@@ -91,13 +95,11 @@
 							
 								<!-- Feature #1 -->
 									<section>
-										<a href="football.php" class="bordered-feature-image"><img src="images/football.jpg" alt="" /></a>
-										<h2>Football</h2>
+										<a href="rules.php#football" class="bordered-feature-image"><img src="images/football.jpg" alt="" /></a>
+										<h2><a href="rules.php#football">Football</a></h2>
 										<p>
-											This is <strong>Football</strong>, for starting a pick- 
-											up <a href="http://n33.co/">game.</a> for joining
-											an existing <a href="http://html5up.net">game.</a>
-											Bring your own equipment.
+											Click on the image to see rules and other important information, such as
+											you must bring your own equipment. You must be logged in to join a pickup game.
 										</p>
 									</section>
 
@@ -106,13 +108,11 @@
 								
 								<!-- Feature #2 -->
 									<section>
-										<a href="baseball.php" class="bordered-feature-image"><img src="images/baseball.jpg" alt="" /></a>
-										<h2>Baseball</h2>
+										<a href="rules.php#baseball" class="bordered-feature-image"><img src="images/baseball.jpg" alt="" /></a>
+										<h2><a href="rules.php#baseball">Baseball</a></h2>
 										<p>
-											This is <strong>Baseball</strong>, for starting a pick- 
-											up <a href="http://n33.co/">game.</a> for joining
-											an existing <a href="http://html5up.net">game.</a>
-											Bring your own equipment.
+											Click on the image to see rules and other important information, such as
+											you must bring your own equipment. You must be logged in to join a pickup game.
 										</p>
 									</section>
 
@@ -121,13 +121,11 @@
 								
 								<!-- Feature #3 -->
 									<section>
-										<a href="basketball.php" class="bordered-feature-image"><img src="images/basketball.jpg" alt="" /></a>
-										<h2>Basketball</h2>
+										<a href="rules.php#basketball" class="bordered-feature-image"><img src="images/basketball.jpg" alt="" /></a>
+										<h2><a href="rules.php#basketball">Basketball</a></h2>
 										<p>
-											This is <strong>Basketball</strong>, for starting a pick- 
-											up <a href="http://n33.co/">game.</a> for joining
-											an existing <a href="http://html5up.net">game.</a>
-											Bring your own equipment.
+											Click on the image to see rules and other important information, such as
+											you must bring your own equipment. You must be logged in to join a pickup game.
 										</p>
 									</section>
 
@@ -136,13 +134,11 @@
 								
 								<!-- Feature #4 -->
 									<section>
-										<a href="soccer.php" class="bordered-feature-image"><img src="images/soccer.jpg" alt="" /></a>
-										<h2>Soccer</h2>
+										<a href="rules.php#soccer" class="bordered-feature-image"><img src="images/soccer.jpg" alt="" /></a>
+										<h2><a href="rules.php#soccer">Soccer</a></h2>
 										<p>
-											This is <strong>Soccer</strong>, for starting a pick- 
-											up <a href="http://n33.co/">game.</a> for joining
-											an existing <a href="http://html5up.net">game.</a>
-											Bring your own equipment.
+											Click on the image to see rules and other important information, such as
+											you must bring your own equipment. You must be logged in to join a pickup game.
 										</p>
 									</section>
 

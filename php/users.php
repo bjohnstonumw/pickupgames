@@ -42,8 +42,9 @@
 				$_SESSION['isLoggedIn'] = true;
 				$_SESSION['loginFailed'] = false;
 				
+				if (isset($_SESSION['prev_url'])) { echo '<META http-equiv="refresh" content="0;URL=' . $_SESSION['prev_url'] . '">'; }
+				else { echo '<META http-equiv="refresh" content="0;URL=../index.php">'; }
 				
-				echo '<META http-equiv="refresh" content="0;URL=../index.php">';
 			}
 			else {
 				$_SESSION['username'] = $p_username;
@@ -79,7 +80,9 @@
 				$_SESSION['zipcode'] = $p_zipcode;
 				$_SESSION['isLoggedIn'] = true;
 				$_SESSION['loginFailed'] = false;
-				echo '<META http-equiv="refresh" content="0;URL=../index.php">';
+				
+				if (isset($_SESSION['prev_url'])) { echo '<META http-equiv="refresh" content="0;URL=' . $_SESSION['prev_url'] . '">'; }
+				else { echo '<META http-equiv="refresh" content="0;URL=../index.php">'; }
 				
 			} else {
 				#echo "DEBUG: @DELETE fell into else Affected Rows: " . $db->affected_rows;
