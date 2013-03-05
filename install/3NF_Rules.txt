@@ -1,0 +1,98 @@
+@author Josiah Neuberger:: Notes summary of 3NF Rules extracted from our book:
+
+Atomic Data (Chapter 4):
+
+1. "Data in your columns is atomic if it's been broken down into the smallest pieces that you need."
+
+Rule #1: "Atomic data can't have several bits of the same type of data in the same column."
+Rule #2: "Atomic data can't have multiple columns with the same type of data."
+
+Reference page 172.
+
+____________________________________________________________________________________________________________
+
+First Normal Form (1NF) (Chapter 4):
+
+1. "Each row of data must contain atomic values."
+2. "Each row of data must have a unique identifier, known as a Primary Key."
+
+Define: Primary Key is a column in your table that makes each record unique."
+Example: ( id INT NOT NULL AUTO_INCREMENT, ..., PRIMARY KEY (id) );
+
+Reference page 177, 179, 186.
+
+____________________________________________________________________________________________________________
+
+
+1. one-to-one (pgs 309-310) Uses Foriegn Key
+define: 
+"exactly one row of a parent table is related to one row of a child table."
+
+
+2. one-to-many (pgs 311) Uses Foriegn Key
+define: 
+"a record in Table A can have MANY matching records in Table B, but a record in Table B can only match ONE record in Table A." 
+
+
+
+3. many-to-many (pgs 315, 312-316) Uses Junction Table along with foriegn keys
+define:
+"a junction table holds a [primary] key from each table."
+
+link: http://megocode3.wordpress.com/2008/01/04/understanding-a-sql-junction-table/
+
+
+--------------------------------------------------------------------------------------------------------------
+
+Foriegn Key (pgs 303 -305):
+define: "The foreign key is a column in a table that references the primary key of another table."
+
+constraint:
+define: rule the table has to follow that will only allow values inserted into your foriegn key that exist in the table the key came from, the parent table.
+
+NOTE: "Creating a foreign key as a constraint in your table gives you definite advantages. You'll get errors if you violate the rules, which will stop you accidentally doing anything to break the table."
+
+------------------------------------------------------------------------------------------------------------
+
+"a composite key is a primary key composed of multiple columns, creating a unique key." pg 322.
+
+____________________________________________________________________________________________________________
+
+2nd Normal Form (2NF) (pg 331):
+
+Rule #1: "Be in 1NF"
+Rule #2: "Have NO parital functional dependencies."
+
+::partial functional dependencies::
+define: means that a non-key column is dependent on some, but not all, of the columns in a composite primary key.
+
+Note: (junction tables with composite keys).
+"Your 1NF table is also 2NF if all the columns in the table are part of the primary key"
+OR
+"It has a single column primary key"
+
+
+_____________________________________________________________________________________________________________
+
+3rd Normal Form (3NF) (pg 336) (Chapter 7):
+
+Rule #1: "Be in 2NF"
+Rule #2: "Have no transitive dependencies"
+
+Note: "If your table has an artificial primary key and no composite primary key, it's in 2NF"
+
+????artificial primary key????what is it?possible derived from parent table??? ref page #????
+
+::transitive functional dependencies:: (pg 326)
+define: "when any non-key column is related to any of the other non-key columns."
+
+
+
+
+
+
+
+
+
+
+

@@ -52,27 +52,28 @@
 						<div class="row">
 						
 						
-							<div class="4u" style="position:fixed; float:left;">
+							<div class="3u" style="position:fixed; float:left;">
 								
 								<!-- Sidebar -->
 									<section >
 										<?php
 											if (!$s_isLoggedIn) {
 												$_SESSION['prev_url'] = $_SERVER["PHP_SELF"];
-												echo '<p>New Here?You must register an account to create/join games. Or if you are returning you can login.</p>
-													<a href="login.php?action=createAccount" class="button-big">Register!</a>
-													<a href="login.php" class="button-big">Login!</a>';
+												echo '<p>New Here?You must register an account to create/join games. 
+														<br>Or if you are returning you can login.</p>
+													<a style="color: white;" href="login.php?action=createAccount" class="button-big">Register!</a><br>
+													<a style="color: white;" href="login.php" class="button-big">Login!</a>';
 											} else {
 												echo '<p>Do you want to get started and join a game?</p>
-													<a href="joinevent.php" class="button-big">Join a Pickup Game!</a>
-													<a href="event.php" class="button-big">Create a New Event!</a>';
+													<a style="color: white;" href="joinevent.php" class="button-big">Join a Pickup Game!</a><br>
+													<a style="color: white;" href="event.php" class="button-big">Create a New Event!</a>';
 											}
 										?>
 									</section>
 
 							</div>
 						
-							<div class="7u" style=" float:right;">
+							<div class="7u" style="float:right;">
 							
 								<!-- Main Content -->
 									<section style="border-bottom:1px dashed;">
