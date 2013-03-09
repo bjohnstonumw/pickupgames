@@ -55,67 +55,73 @@
 								<!-- Main Content -->
 								
 									<?php include 'php/db_connect.php'; ?>
+									
+									<section>
+										<header>
+											<h2>Your Events</h2>
+										</header>
+										
+										
+											
+											<?php
+												function load_events($db, $your_query, $isYourEvents) {
+													
+													echo "<table id='table-2'>";
+										
+													echo "<tr><th>ID</th><th>Name</th><th>Date</th><th>Time</th><th>Facility ID</th><th>Sport Type</th><th>Additional Information</th></tr>";
+													
+													#print_r($db);
+													#print_r($your_query);
+													$result = mysqli_query($db, $your_query) or die("Error Querying Database for events from joinevent.php");
+													
+													
+													while($row = mysqli_fetch_array($result)) {
+														$event_id = $row['event_id'];
+														$event_name = $row['name'];
+														$event_date = $row['event_date'];
+														$event_time = $row['event_time'];
+														$event_fac_id = $row['fac_id'];
+														$event_sport_type = $row['sport_name'];
+														$event_ad = $row['ad'];
+														
+														if (!$isYourEvents) { $radio = "<input type='radio' name='jevent' value='$event_id' />"; }
+														else { $radio = ""; }
+														
+														echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
+													}
+													echo "</table>";
+												}
+												
+												$query = "SELECT * FROM events natural join jevents where username='$s_username' ORDER BY event_date DESC";
+												load_events($db, $query, TRUE);
+													
+											?>
+									</section>
+									
 									<section>
 										<header>
 											<h2>Join an Event</h2>
 										</header>
 											
 										<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
-											<table>
-												<!--<tr><td>Name of the Event</td><td>&nbsp;</td><td><input type="text" id="eventname" name="eventname" /></td></tr>-->
-												<tr><td>Name of the Event</td><td>&nbsp;</td><td><select name="eventname">
-												<?php
-													$query = "SELECT * FROM events ORDER BY event_date DESC LIMIT 10";
-
-													$result = mysqli_query($db, $query) or die("Error Querying Database for events from joinevent.php");
-													
-													
-													while($row = mysqli_fetch_array($result)) {
-														$event_name = $row['name'];
-														echo "<option value='$event_name'>$event_name";
-													}
-													echo "</select>";
-												?>
-												<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
-
-											</table>
+											
+											<?php
+												$query = "SELECT * FROM events ORDER BY event_date DESC";
+												load_events($db, $query, FALSE);
+											?>
+											<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
 											
 										</form>
 
 									</section>
 										
 									<?php 
-									
-										
-										/*	#Don't really need with the events being pulled into the dropdown box above.
-										echo "<section><header><h2>Listing of Most Recent Events (Top 10)</h2></header>";
-											
-										$query = "SELECT * FROM events ORDER BY event_date DESC LIMIT 10";
-
-										$result = mysqli_query($db, $query) or die("Error Querying Database");
-										echo "<table id='events' class='test'><tr><td>ID</td><td>Name</td><tr>\n\n";
-										while($row = mysqli_fetch_array($result)) {
-											$event_id = $row['id'];
-											$event_name = $row['name'];
-											echo "<tr class='test'><td>$event_id</td><td>$event_name</td></tr>\n";
-										}
-										echo "</table>\n"; 
-										echo "</section>";*/
 										
 										if (isset( $_POST['join_event'] ) and '$s_isLoggedIN' == true) {
-
-											
-											
 											echo "<section>";
-											$ename = mysqli_real_escape_string($db, trim($_POST['eventname']));
 											$uname = $s_username;
-											$result = mysqli_query($db, "SELECT id FROM events WHERE name = '$ename'");
-											if (!$result) {
-												echo 'Could not run query: ' . mysqli_error();
-												exit;
-											}
-											$row = mysqli_fetch_row($result);
-											$eid = $row[0];
+
+											$eid = $_POST['jevent']; #no need to escape because it's the id we pulled from the database. (not user input).
 											$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
 
 											$result2 = mysqli_query($db,$query) or die("Error Querying Database: Join Event Result1");

@@ -72,10 +72,10 @@ CREATE TABLE IF NOT EXISTS facilities (
 /*Junction Table for supported sport types at a facility*/
 CREATE TABLE IF NOT EXISTS facility_sports (
 	fac_id INT(11) NOT NULL,
-	sport_id VARCHAR(20) NOT NULL,
-	CONSTRAINT pk_facility_sports PRIMARY KEY (fac_id, sport_id),
+	sport_name VARCHAR(20) NOT NULL,
+	CONSTRAINT pk_facility_sports PRIMARY KEY (fac_id, sport_name),
 	FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
-	FOREIGN KEY (sport_id) REFERENCES sports(sport_name)
+	FOREIGN KEY (sport_name) REFERENCES sports(sport_name)
 	
 );
 
@@ -85,10 +85,10 @@ CREATE TABLE IF NOT EXISTS events (
 	event_date DATE NOT NULL,
 	event_time TIME NOT NULL,
 	fac_id INT(11) NOT NULL,
-	sport_type VARCHAR(20) DEFAULT NULL,
+	sport_name VARCHAR(20) DEFAULT NULL,
 	ad BLOB,
 	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
-	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_type) REFERENCES sports(sport_name),
+	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
 	PRIMARY KEY (event_id)
 );
 
@@ -143,10 +143,10 @@ INSERT INTO sports VALUES ('water polo');
 INSERT INTO sports VALUES ('tennis');
 
 /*Facilities*/
-INSERT INTO facilities VALUES (1, 'Capital Club House', '3033 Waldorf Market Pl', '20603');
+INSERT INTO facilities VALUES (null, 'Capital Club House', '3033 Waldorf Market Pl', '20603');
 INSERT INTO facility_Sports VALUES (1, 'basketball'), (1, 'ice hockey'), (1, 'soccer indoor'), (1, 'volleyball');
 
-INSERT INTO facilities VALUES (2, 'University of Mary Washington', '1301 College Avenue', '22401');
+INSERT INTO facilities VALUES (null, 'University of Mary Washington', '1301 College Avenue', '22401');
 INSERT INTO facility_Sports VALUES (2, 'soccer'), (2, 'basketball'), (2, 'volleyball'), (2, 'baseball'), (2, 'football');
 
 INSERT INTO facilities VALUES (3, 'Bryantown Sports Complex', '5665 Bryantown Road', '20601');
@@ -181,10 +181,10 @@ CREATE TABLE IF NOT EXISTS events (
 	event_date DATE NOT NULL,
 	event_time TIME NOT NULL,
 	fac_id INT(11) NOT NULL,
-	sport_type VARCHAR(20) DEFAULT NULL,
+	sport_name VARCHAR(20) DEFAULT NULL,
 	ad BLOB,
 	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
-	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_type) REFERENCES sports(sport_name),
+	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
 	PRIMARY KEY (event_id)
 );
 
