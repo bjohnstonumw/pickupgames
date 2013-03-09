@@ -86,8 +86,125 @@ Note: "If your table has an artificial primary key and no composite primary key,
 ::transitive functional dependencies:: (pg 326)
 define: "when any non-key column is related to any of the other non-key columns."
 
+**************************************************************************************************
+
+1NF is the most basic of normal forms - each cell in a table must contain only one piece of information, and there can be no duplicate rows.
+
+2NF and 3NF are all about being dependent on the primary key. Recall that a primary key can be made up of multiple columns. As Chris said in his response:
+
+The data depends on the key [1NF], the whole key [2NF] and nothing but the key [3NF] (so help me Codd).
+2NF
+
+Say you have a table containing courses that are taken in a certain semester, and you have the following data:
+
+|-----Primary Key----|               uh oh |
+                                           V
+CourseID|  Semester  |  #Places   |  Course Name |
+-------------------------------------------------|
+IT101   |   2009-1   |  100       | Programming  |
+IT101   |   2009-2   |  100       | Programming  |
+IT102   |   2009-1   |  200       | Databases    |
+IT102   |   2010-1   |  150       | Databases    |
+IT103   |   2009-2   |  120       | Web Design   |
+
+This is not in 2NF, because the fourth column does not rely upon the entire key - but only a part of it. The course name is dependent on the Course's ID, but has nothing to do with which semester it's taken in. Thus, as you can see, we have duplicate information - several rows telling us that IT101 is programming, and IT102 is Databases. So we fix that by putting the course name into another table, where CourseID is the ENTIRE key.
+
+Primary Key |
+
+CourseID    |  Course Name |
+---------------------------|
+IT101       | Programming  |
+IT102       | Databases    |
+IT103       | Web Design   |
+
+No redundancy!
+3NF
+
+Okay, so let's say we also add the name of the teacher of the course, and some details about them, into the RDBMS:
+
+|-----Primary Key----|                           uh oh |
+                                                       V
+Course  |  Semester  |  #Places   |  TeacherID  | TeacherName  |
+---------------------------------------------------------------|
+IT101   |   2009-1   |  100       |  332        |  Mr Jones    |
+IT101   |   2009-2   |  100       |  332        |  Mr Jones    |
+IT102   |   2009-1   |  200       |  495        |  Mr Bentley  |
+IT102   |   2010-1   |  150       |  332        |  Mr Jones    |
+IT103   |   2009-2   |  120       |  242        |  Mrs Smith   |
+
+Now it should be obvious that TeacherName is dependent on TeacherID - so this is not in 3NF. To fix this, we do much the same as we did in 2NF - take TeacherName out of this table, and put it in its own, which has TeacherID as the key.
+
+ Primary Key |
+
+ TeacherID   | TeacherName  |
+ ---------------------------|
+ 332         |  Mr Jones    |
+ 495         |  Mr Bentley  |
+ 242         |  Mrs Smith   |
+
+No redundancy!!
+
+One important thing to remember is that if something is not in 1NF, it is not in 2NF or 3NF either. So each additional Normal Form requires everything that the lower ones had, plus some extra conditions, which must all be fulfilled.
+share|improve this answer
+	
+edited Apr 7 '09 at 3:16
+
+	
+answered Apr 7 '09 at 3:09
+Smashery				SOURCE: http://stackoverflow.com/questions/723998/can-someone-please-give-an-example-of-1nf-2nf-and-3nf-in-plain-english
+**************************************************************************************************************************************************
 
 
+***************************************************************************************************************************************************
+
+source: http://www.tutorialspoint.com/sql/third-normal-form.htm
+
+A table is in third normal form when the following conditions are met:
+
+    It is in second normal form.
+
+    All nonprimary fields are dependent on the primary key.
+
+The dependency of nonprimary fields is between the data. For example in the below table, street name, city, and state are unbreakably bound to the zip code.
+
+CREATE TABLE CUSTOMERS(
+       CUST_ID       INT              NOT NULL,
+       CUST_NAME     VARCHAR (20)      NOT NULL,
+       DOB           DATE,
+       STREET        VARCHAR(200),
+       CITY          VARCHAR(100),
+       STATE         VARCHAR(100),
+       ZIP           VARCHAR(12),
+       EMAIL_ID      VARCHAR(256),
+       PRIMARY KEY (CUST_ID)
+);
+
+The dependency between between zip code and address is called a transitive dependency. To comply with third normal form, all you need to do is move the Street, City, and State fields into their own table, which you can call the Zip Code table:
+
+CREATE TABLE ADDRESS(
+       ZIP           VARCHAR(12),
+       STREET        VARCHAR(200),
+       CITY          VARCHAR(100),
+       STATE         VARCHAR(100),
+       PRIMARY KEY (ZIP)
+);
+
+Next, alter the CUSTOMERS table as follows:
+
+CREATE TABLE CUSTOMERS(
+       CUST_ID       INT              NOT NULL,
+       CUST_NAME     VARCHAR (20)      NOT NULL,
+       DOB           DATE,
+       ZIP           VARCHAR(12),
+       EMAIL_ID      VARCHAR(256),
+       PRIMARY KEY (CUST_ID)
+);
+
+The advantages of removing transitive dependencies are mainly twofold. First, the amount of data duplication is reduced and therefore your database becomes smaller.
+
+The second advantage is data integrity. When duplicated data changes, there's a big risk of updating only some of the data, especially if it's spread out in a number of different places in the database. For example, If address and zip code data were stored in three or four different tables, then any changes in zip codes would need to ripple out to every record in those three or four tables.
+
+**************************************************************************************************************************************************************
 
 
 
