@@ -175,7 +175,7 @@ INSERT INTO events VALUES (1, 'Soccer Youth Game', '20130603', '2:30pm', 1, 'soc
 INSERT INTO events VALUES (2, 'Touch Football Madness', '20130715', '2:30pm ', 2, 'football', 'Ages 18+, Bring your own drinks.',22401);
 INSERT INTO events VALUES (3, 'Baseball Diamond Bash', '20130812', '11:00am', 5, 'baseball', 'Ages 15 and up',22043);
 INSERT INTO events VALUES (4, 'Basketball Charity Event', '20130607', '7:30pm', 4, 'basketball', 'Great Cause!',22401);
-INSERT INTO events VALUES (5, 'Golf Tournament', '20130603', '4:30pm', 7, 'golf', 'Ages 18+, Great Fun!'22401);
+INSERT INTO events VALUES (5, 'Golf Tournament', '20130603', '4:30pm', 7, 'golf', 'Ages 18+, Great Fun!',22401);
 
 
 CREATE TABLE IF NOT EXISTS events (
