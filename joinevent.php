@@ -32,13 +32,7 @@
 					<div class="row">
 						<div class="10u">
 
-							<!-- Logo -->
-								<h1><a href="index.php" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>
@@ -80,7 +74,7 @@
 														$event_name = $row['name'];
 														$event_date = $row['event_date'];
 														$event_time = $row['event_time'];
-														$event_fac_id = $row['fac_id'];
+														$event_fac_id = $row['fname'];
 														$event_sport_type = $row['sport_name'];
 														$event_ad = $row['ad'];
 														
@@ -90,23 +84,25 @@
 														echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
 													}
 													echo "</table>";
+													
 												}
 												
-												$query = "SELECT * FROM events natural join jevents where username='$s_username' ORDER BY event_date DESC";
+												$query = "SELECT e.*, f.name as fname FROM events as e natural join jevents as j left join facilities as f on (e.fac_id = f.fac_id) where username='$s_username' ORDER BY event_date DESC";
 												load_events($db, $query, TRUE);
+												
 													
 											?>
 									</section>
 									
 									<section>
 										<header>
-											<h2>Join an Event</h2>
+											<h2>Events <a href="event.php" style="float:right; border:1px solid black; background-color: gray; color: white; padding:5px; display:inline-block;">Create a New Event!</a></h2>
 										</header>
 											
 										<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
 											
 											<?php
-												$query = "SELECT * FROM events ORDER BY event_date DESC";
+												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC";
 												load_events($db, $query, FALSE);
 											?>
 											<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>

@@ -35,20 +35,7 @@
 					<div class="row">
 						<div class="12u">
 						
-							<!-- Logo -->
-								<h1><a href="#" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-									<?php
-									if ($s_isLoggedIn) { #Only show if we are logged in.
-										echo '<a href="event.php">Event</a>';
-										echo '<a href="joinevent.php">Join a Pickup Game</a>'; 
-									} 
-									?>
-									<a href="blog.php">Blog</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>

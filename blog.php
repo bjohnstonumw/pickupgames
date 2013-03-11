@@ -34,13 +34,7 @@
 					<div class="row">
 						<div class="10u">
 
-							<!-- Logo -->
-								<h1><a href="index.php" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>

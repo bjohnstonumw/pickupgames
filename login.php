@@ -14,7 +14,7 @@
 -->
 
 <?php
-session_start();
+if (!isset($_SESSSION)) { session_start(); }
 	$MAX_LOGIN_ATTEMPTS = 3;
 	$s_username = "";
 	if (!isset($_GET['action'])) { $_GET['action'] = "default"; }
@@ -28,8 +28,10 @@ session_start();
 		if (isset($_SESSION['attemptCount'])) { $s_attemptCount = $_SESSION['attemptCount']; }
 		else $s_attemptCount = $_SESSION['attemptCount'] = 0;
 		//Track the number of failed login attempts.
+		$s_isLoggedIn = false;
 	}
 	else { //Do nothing, never tried to login yet.
+		$s_isLoggedIn = false;
 	}
 ?>
 
@@ -52,13 +54,7 @@ session_start();
 					<div class="row">
 						<div class="10u">
 
-							<!-- Logo -->
-								<h1><a href="index.php" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>

@@ -32,13 +32,7 @@
 					<div class="row">
 						<div class="10u">
 
-							<!-- Logo -->
-								<h1><a href="index.php" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>
@@ -54,21 +48,51 @@
 							
 								<!-- Main Content -->
 								
+									<?php include 'php/db_connect.php'; ?>
+								
 									<section>
 										<header><h2>Tell everyone about your event.</h2></header>
 										
 										<form name = "newevent" action = "php/submitevent.php" method = "post">
-										<table>
+										<table id="table-2">
 											<tr><td>Name of event: </td><td><input type = "text", name = "event"></td></tr>
 											<tr><td>Date:</td><td><input type = "date", name = "date"></td></tr>
 											<tr><td>Time:</td><td><input type = "time", name = "time"></td></tr>
-											<tr><td>Location:</td><td><input type = "text", name = "location"></td></tr>
-											<tr><td>Zip Code:</td><td><input type = "text", name = "zip"></td></tr>
-											<tr><td>Type of sport:</td><td><select name = "sport"><option value = "football">Football<option value = "baseball">Baseball<option value = "basketball">Basketball<option value = "soccer">Soccer</td></tr>
+											<?php
+												#Get the supported sports
+												$query1 = "SELECT sport_name FROM sports";
+												
+												echo "<tr><td>Type of sport:</td><td><select name='sport'>";
+												
+												$result = mysqli_query($db, $query1) or die("Error Querying Database for facilities from event.php");
+
+												while($row = mysqli_fetch_array($result)) {
+													$sport_name = $row['sport_name'];
+													
+													echo "<option value='$sport_name'>$sport_name</option>";
+												}
+												echo "</select></td></tr>";
+											
+												#Get the available facilities.
+												$query2 = "SELECT fac_id, name FROM facilities ORDER BY fac_id ASC";
+												
+												echo "<tr><td>Facility:</td><td><select name='location'>";
+												
+												$result2 = mysqli_query($db, $query2) or die("Error Querying Database for facilities from event.php");
+													
+													
+												while($row = mysqli_fetch_array($result2)) {
+													$fac_id = $row['fac_id'];
+													$fac_name = $row['name'];
+													
+													echo "<option value='$fac_id'>$fac_name</option>";
+												}
+												echo "</select></td></tr>";
+											?>
+											<tr><td style="vertical-align:middle;">Advertise your event:</td>
+											<td><textarea rows = "10" cols = "75" name = "ad"></textarea><br><td>
+											<td><input type = "submit" value="Submit Event"></td></tr>
 										</table>
-											Advertise your event:<br>
-											<textarea rows = "10" cols = "30" name = "ad"></textarea><br>
-											<input type = "submit" value="Submit Event">
 										</form>
 
 									</section>
