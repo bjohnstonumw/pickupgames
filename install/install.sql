@@ -28,7 +28,7 @@ CREATE TABLE us_zips (
 	PRIMARY KEY (zip)
 );
 
-LOAD DATA INFILE 'zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';
+LOAD DATA INFILE '../../htdocs/pickupgames/install/zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';
 
 CREATE TABLE IF NOT EXISTS basicusers (
 	b_username VARCHAR(20) NOT NULL,
