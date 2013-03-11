@@ -12,6 +12,9 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
+
+<?php include 'php/session_start_loggedin.php'; ?>
+
 <html>
 	<head>
 		<title>Get in the Game: Would like to Give Credit To:</title>
@@ -31,13 +34,7 @@
 					<div class="row">
 						<div class="10u">
 
-							<!-- Logo -->
-								<h1><a href="#" class="mobileUI-site-name">Get in the Game</a></h1>
-							
-							<!-- Nav -->
-								<nav class="mobileUI-site-nav">
-									<a href="index.php">Homepage</a>
-								</nav>
+							<?php include 'php/menu.php'; ?>
 
 						</div>
 					</div>

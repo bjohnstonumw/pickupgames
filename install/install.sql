@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS events (
 	event_date DATE NOT NULL,
 	event_time TIME NOT NULL,
 	fac_id INT(11) NOT NULL,
-	sport_name VARCHAR(20) DEFAULT NULL,
+	sport_name VARCHAR(20) NOT NULL,
 	ad BLOB,
 	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
 	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
