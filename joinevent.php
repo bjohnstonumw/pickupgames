@@ -52,13 +52,10 @@
 									
 									<section>
 										<header>
-											<h2>Your Events</h2>
+											<h2>Search for an Event<h2>
 										</header>
-										
-										
-											
-											<?php
-												function load_events($db, $your_query, $isYourEvents) {
+										<?php
+											function load_events($db, $your_query, $isYourEvents) {
 													
 													echo "<table id='table-2'>";
 										
@@ -86,23 +83,63 @@
 													echo "</table>";
 													
 												}
+											
+
+										echo "<form action='joinevent.php'>";
+											echo "<input type='text' id='search' name='search' size='40'/>";
+											 echo "<tr><td><input type='submit' name='sf' value='search' /></td><td>&nbsp;</td></tr>";
+										echo "</form>";
+										
+										if (isset( $_GET['sf'] ) && '$s_isLoggedIN' == true) {
+											$input=$_GET[search];
+
+											echo '<form method = "post" action = "joinevent.php" enctype="multipart/form-data">';
+											
+											
+												$query = "SELECT * FROM events WHERE upper(name) LIKE upper('%$input%') OR upper(ad) LIKE upper('%input%') OR upper(sport_name) LIKE upper('%input%') ORDER BY event_date, event_time";
+												load_events($db, $query, FALSE);
+											
+											echo '<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>';
+											echo "</form>";
+
+											$uname = $s_username;
+
+											$eid = $_POST['jevent']; #no need to escape because it's the id we pulled from the database. (not user input).
+											$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
+											echo "</section>";
+
+											//echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
+											echo $eid; 
+											
+										 
+										}
+										?>
+									</section>
+
+									<section>
+										<header>
+											<h2>Your Events</h2>
+										</header>
+										
+										
+											
+											<?php
 												
 												$query = "SELECT e.*, f.name as fname FROM events as e natural join jevents as j left join facilities as f on (e.fac_id = f.fac_id) where username='$s_username' ORDER BY event_date DESC";
 												load_events($db, $query, TRUE);
-												
 													
 											?>
 									</section>
 									
 									<section>
 										<header>
-											<h2>Events <a href="event.php" style="float:right; border:1px solid black; background-color: gray; color: white; padding:5px; display:inline-block;">Create a New Event!</a></h2>
+											<h2>Upcoming Events <a href="event.php" style="float:right; border:1px solid black; background-color: gray; color: white; padding:5px; display:inline-block;">Create a New Event!</a></h2>
 										</header>
 											
 										<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
 											
 											<?php
-												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC";
+												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC LIMIT 10";
 												load_events($db, $query, FALSE);
 											?>
 											<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
