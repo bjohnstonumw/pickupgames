@@ -18,6 +18,7 @@ USE pickupgames;
 */
 DROP TABLE IF EXISTS us_zips;
 
+
 CREATE TABLE us_zips (
 	zip VARCHAR(5) NOT NULL,
 	city VARCHAR(64) NOT NULL,
@@ -26,7 +27,8 @@ CREATE TABLE us_zips (
 	longitude FLOAT NOT NULL,
 	PRIMARY KEY (zip)
 );
-LOAD DATA LOCAL INFILE 'zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';
+
+LOAD DATA INFILE 'zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';
 
 CREATE TABLE IF NOT EXISTS basicusers (
 	b_username VARCHAR(20) NOT NULL,
