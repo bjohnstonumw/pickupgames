@@ -56,7 +56,21 @@ CREATE TABLE IF NOT EXISTS blog (
 CREATE TABLE IF NOT EXISTS sports (
 	sport_name VARCHAR(20),
 	/*add other other sport related columns here*/
+	min_players INT(2) NOT NULL,
+	max_players INT(2) NOT NULL,
+	
 	PRIMARY KEY (sport_name)
+);
+
+CREATE TABLE IF NOT EXISTS equipment(
+	equipment VARCHAR(50),
+	PRIMARY KEY (equipment)
+);
+
+CREATE TABLE IF NOT EXISTS sports_equipment(
+    sport_name VARCHAR(50) REFERENCES sports (sport_name),
+    equipment VARCHAR(50) REFERENCES equipment (equipment),
+    PRIMARY KEY (sport_name, equipment)
 );
 
 /*  
@@ -134,16 +148,52 @@ INSERT INTO blog VALUES (null, 'jake', null, 'Does anyone know of a good place t
 INSERT INTO blog VALUES (null, 'wang', null, 'I cannot wait for this spring season.');
 
 /*sports*/
-INSERT INTO sports VALUES ('basketball');
-INSERT INTO sports VALUES ('baseball');
-INSERT INTO sports VALUES ('football');
-INSERT INTO sports VALUES ('soccer');
-INSERT INTO sports VALUES ('ice hockey');
-INSERT INTO sports VALUES ('soccer indoor');
-INSERT INTO sports VALUES ('golf');
-INSERT INTO sports values ('volleyball');
-INSERT INTO sports VALUES ('water polo');
-INSERT INTO sports VALUES ('tennis');
+INSERT INTO sports VALUES ('basketball', 6, 12);
+INSERT INTO sports VALUES ('baseball', 14, 28);
+INSERT INTO sports VALUES ('football', 14, 28);
+INSERT INTO sports VALUES ('soccer', 14, 28);
+INSERT INTO sports VALUES ('ice hockey', 12, 24);
+INSERT INTO sports VALUES ('soccer indoor', 14, 28);
+INSERT INTO sports VALUES ('golf', 2, 8);
+INSERT INTO sports values ('volleyball', 8, 16);
+INSERT INTO sports VALUES ('water polo', 8, 16);
+INSERT INTO sports VALUES ('tennis', 2, 4);
+
+/*equipment*/
+INSERT INTO equipment VALUES ('ball');
+INSERT INTO equipment VALUES ('gloves');
+INSERT INTO equipment VALUES ('bat');
+INSERT INTO equipment VALUES ('cleats');
+INSERT INTO equipment VALUES ('protective equipment');
+INSERT INTO equipment VALUES ('flags');
+INSERT INTO equipment VALUES ('puck');
+INSERT INTO equipment VALUES ('stick');
+INSERT INTO equipment VALUES ('skates');
+INSERT INTO equipment VALUES ('clubs');
+INSERT INTO equipment VALUES ('tennis racket');
+
+/*sports_equipment*/
+INSERT INTO sports_equipment VALUES ('basketball','ball');
+INSERT INTO sports_equipment VALUES ('baseball','ball');
+INSERT INTO sports_equipment VALUES ('baseball','bat');
+INSERT INTO sports_equipment VALUES ('baseball','gloves');
+INSERT INTO sports_equipment VALUES ('baseball','protective equipment');
+INSERT INTO sports_equipment VALUES ('baseball','cleats');
+INSERT INTO sports_equipment VALUES ('football','protective equipment');
+INSERT INTO sports_equipment VALUES ('football','ball');
+INSERT INTO sports_equipment VALUES ('football','cleats');
+INSERT INTO sports_equipment VALUES ('football','flags');
+INSERT INTO sports_equipment VALUES ('soccer','protective equipment');
+INSERT INTO sports_equipment VALUES ('soccer','cleats');
+INSERT INTO sports_equipment VALUES ('ice hockey','protective equipment');
+INSERT INTO sports_equipment VALUES ('ice hockey','puck');
+INSERT INTO sports_equipment VALUES ('ice hockey','stick');
+INSERT INTO sports_equipment VALUES ('ice hockey','skatess');
+INSERT INTO sports_equipment VALUES ('water polo','protective equipment');
+INSERT INTO sports_equipment VALUES ('water polo','ball');
+INSERT INTO sports_equipment VALUES ('tennis','ball');
+INSERT INTO sports_equipment VALUES ('tennis','tennis racket');
+
 
 /*Facilities*/
 INSERT INTO facilities VALUES (null, 'Capital Club House', '3033 Waldorf Market Pl', '20603');
