@@ -13,6 +13,8 @@
 	@Author: Brian Johnston
 -->
 <?php include 'php/session_start_loggedin.php';?>
+<?php if(!isset($s_isLoggedIn) or $s_isLoggedIn == false) { die('Direct access not permitted'); } #From this point forward we can assume the user is logged in.?>
+
 <html>
 	<head>
 		<title>Get in the Game: Join an Event</title>

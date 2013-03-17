@@ -13,6 +13,8 @@
 	@Author: Brian Johnston
 -->
 <?php include 'php/session_start_loggedin.php';?>
+<?php if(!isset($s_isLoggedIn) or $s_isLoggedIn == false) { die('Direct access not permitted'); } #From this point forward we can assume the user is logged in.?>
+
 <html>
 	<head>
 		<title>Get in the Game: Join an Event</title>
@@ -49,70 +51,72 @@
 								<!-- Main Content -->
 								
 									<?php include 'php/db_connect.php'; ?>
-									
+									<?php
+										function load_events($db, $your_query, $isYourEvents, $radio_button_name) {
+												
+											echo "<table id='table-2'>";
+								
+											echo "<tr><th>ID</th><th>Name</th><th>Date</th><th>Time</th><th>Facility ID</th><th>Sport Type</th><th>Additional Information</th></tr>";
+											
+											$result = mysqli_query($db, $your_query) or die("Error Querying Database for events from joinevent.php: load_events function");
+											
+											while($row = mysqli_fetch_array($result)) {
+												$event_id = $row['event_id'];
+												$event_name = $row['name'];
+												$event_date = $row['event_date'];
+												$event_time = $row['event_time'];
+												$event_fac_id = $row['fname'];
+												$event_sport_type = $row['sport_name'];
+												$event_ad = $row['ad'];
+												
+												if (!$isYourEvents) { $radio = "<input type='radio' name='$radio_button_name' value='$event_id' />"; }
+												else { $radio = ""; }
+												
+												echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
+											}
+											echo "</table>";
+										}
+										
+										function insert_selected_event($db, $s_username, $radio_button_name) {
+
+											echo "<div>";
+											echo "finally";
+											$eid = $_POST[$radio_button_name]; #no need to escape because it's the id we pulled from the database. (not user input).
+											
+											$query = "INSERT INTO jevents VALUES ('$s_username', '$eid')"; #Use the logged in username.
+											$result_insert = mysqli_query($db, $query) or die("Error Querying Database: Join Event: result_insert function");
+											
+											echo "</div>";
+											echo '<META http-equiv="refresh" content="0;URL=joinevent.php">'; 
+											
+										}
+			
+									?>
 									<section>
 										<header>
 											<h2>Search for an Event<h2>
 										</header>
 										<?php
-											function load_events($db, $your_query, $isYourEvents) {
-													
-													echo "<table id='table-2'>";
-										
-													echo "<tr><th>ID</th><th>Name</th><th>Date</th><th>Time</th><th>Facility ID</th><th>Sport Type</th><th>Additional Information</th></tr>";
-													
-													#print_r($db);
-													#print_r($your_query);
-													$result = mysqli_query($db, $your_query) or die("Error Querying Database for events from joinevent.php");
-													
-													
-													while($row = mysqli_fetch_array($result)) {
-														$event_id = $row['event_id'];
-														$event_name = $row['name'];
-														$event_date = $row['event_date'];
-														$event_time = $row['event_time'];
-														$event_fac_id = $row['fname'];
-														$event_sport_type = $row['sport_name'];
-														$event_ad = $row['ad'];
-														
-														if (!$isYourEvents) { $radio = "<input type='radio' name='jevent' value='$event_id' />"; }
-														else { $radio = ""; }
-														
-														echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
-													}
-													echo "</table>";
-													
-												}
-											
-
-										echo "<form action='joinevent.php'>";
+											echo "<form method = 'post' action='joinevent.php' enctype='multipart/form-data'>";
 											echo "<input type='text' id='search' name='search' size='40'/>";
-											 echo "<tr><td><input type='submit' name='sf' value='search' /></td><td>&nbsp;</td></tr>";
-										echo "</form>";
-										
-										if (isset( $_GET['sf'] ) && '$s_isLoggedIN' == true) {
-											$input=$_GET[search];
-
-											echo '<form method = "post" action = "joinevent.php" enctype="multipart/form-data">';
-											
-											
-												$query = "SELECT * FROM events WHERE upper(name) LIKE upper('%$input%') OR upper(ad) LIKE upper('%input%') OR upper(sport_name) LIKE upper('%input%') ORDER BY event_date, event_time";
-												load_events($db, $query, FALSE);
-											
-											echo '<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>';
+											echo "<tr><td><input type='submit' name='submit_search' value='search' /></td><td>&nbsp;</td></tr>";
 											echo "</form>";
-
-											$uname = $s_username;
-
-											$eid = $_POST['jevent']; #no need to escape because it's the id we pulled from the database. (not user input).
-											$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
-											echo "</section>";
-
-											//echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
-											echo $eid; 
 											
-										 
-										}
+											if (isset($_POST['submit_search'])) {
+							
+												echo "<form method = 'post' action = 'joinevent.php' enctype='multipart/form-data'>";
+												
+												$p_input= $_POST['search'];
+												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) where upper(e.name) LIKE upper('%$p_input%') OR upper(e.ad) LIKE upper('%$p_input%') OR upper(e.sport_name) LIKE upper('%$p_input%') ORDER BY event_date, event_time";
+												
+												load_events($db, $query, FALSE, "events_search");
+												
+												echo '<tr><td><input type="submit" name="join_event_from_search" value="Join Event" /></td><td>&nbsp;</td></tr>';
+												echo "</form>";	
+											}
+											
+											#Insert Event if one is selected and submitted by user:
+											if (isset($_POST['join_event_from_search'])) { insert_selected_event($db, $s_username, "events_search"); }	
 										?>
 									</section>
 
@@ -120,14 +124,9 @@
 										<header>
 											<h2>Your Events</h2>
 										</header>
-										
-										
-											
 											<?php
-												
 												$query = "SELECT e.*, f.name as fname FROM events as e natural join jevents as j left join facilities as f on (e.fac_id = f.fac_id) where username='$s_username' ORDER BY event_date DESC";
-												load_events($db, $query, TRUE);
-													
+												load_events($db, $query, TRUE, "events_your");	
 											?>
 									</section>
 									
@@ -140,34 +139,16 @@
 											
 											<?php
 												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC LIMIT 10";
-												load_events($db, $query, FALSE);
+												load_events($db, $query, FALSE, "events_upcoming");
 											?>
-											<tr><td><input type="submit" name="join_event" value="Join Event" /></td><td>&nbsp;</td></tr>
+											<tr><td><input type="submit" name="join_event_from_upcoming" value="Join Event" /></td><td>&nbsp;</td></tr>
 											
 										</form>
 
 									</section>
-										
-									<?php 
-										
-										if (isset( $_POST['join_event'] ) and '$s_isLoggedIN' == true) {
-											echo "<section>";
-											$uname = $s_username;
-
-											$eid = $_POST['jevent']; #no need to escape because it's the id we pulled from the database. (not user input).
-											$query = "INSERT INTO jevents VALUES ('$uname', '$eid')";
-
-											$result2 = mysqli_query($db,$query) or die("Error Querying Database: Join Event Result1");
-											echo "</section>";
-
-											echo '<META http-equiv="refresh" content="0;URL=joinevent.php">';
-											echo $eid; 
-										}
-									?>
-
 									
-
-
+									<!--Insert Event if one is selected and submitted by user:-->
+									<?php if (isset($_POST['join_event_from_upcoming'])) { insert_selected_event($db, $s_username, "events_upcoming"); } ?>
 							</div>
 						</div>
 					</div>

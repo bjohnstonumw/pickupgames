@@ -102,8 +102,7 @@ CREATE TABLE IF NOT EXISTS events (
 	event_time TIME NOT NULL,
 	fac_id INT(11) NOT NULL,
 	sport_name VARCHAR(20) NOT NULL,
-	ad BLOB,
-	zip VARCHAR(5) NOT NULL,
+	ad TEXT DEFAULT NULL,
 	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
 	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
 	PRIMARY KEY (event_id)
@@ -221,25 +220,11 @@ INSERT INTO facility_Sports VALUES (7, 'baseball'), (7, 'soccer'), (7, 'golf');
 
 /*Sporting Events*/
 
-INSERT INTO events VALUES (1, 'Soccer Youth Game', '20130603', '2:30pm', 1, 'soccer indoor', 'Ages 9-15, Great Fun!',22401);
-INSERT INTO events VALUES (2, 'Touch Football Madness', '20130715', '2:30pm ', 2, 'football', 'Ages 18+, Bring your own drinks.',22401);
-INSERT INTO events VALUES (3, 'Baseball Diamond Bash', '20130812', '11:00am', 5, 'baseball', 'Ages 15 and up',22043);
-INSERT INTO events VALUES (4, 'Basketball Charity Event', '20130607', '7:30pm', 4, 'basketball', 'Great Cause!',22401);
-INSERT INTO events VALUES (5, 'Golf Tournament', '20130603', '4:30pm', 7, 'golf', 'Ages 18+, Great Fun!',22401);
-
-
-CREATE TABLE IF NOT EXISTS events (
-	event_id INT(11) NOT NULL AUTO_INCREMENT,
-	name VARCHAR(30) NOT NULL,
-	event_date DATE NOT NULL,
-	event_time TIME NOT NULL,
-	fac_id INT(11) NOT NULL,
-	sport_name VARCHAR(20) DEFAULT NULL,
-	ad BLOB,
-	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
-	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
-	PRIMARY KEY (event_id)
-);
+INSERT INTO events VALUES (1, 'Soccer Youth Game', '20130603', '2:30pm', 1, 'soccer indoor', 'Ages 9-15, Great Fun!');
+INSERT INTO events VALUES (2, 'Touch Football Madness', '20130715', '2:30pm ', 2, 'football', 'Ages 18+, Bring your own drinks.');
+INSERT INTO events VALUES (3, 'Baseball Diamond Bash', '20130812', '11:00am', 5, 'baseball', 'Ages 15 and up');
+INSERT INTO events VALUES (4, 'Basketball Charity Event', '20130607', '7:30pm', 4, 'basketball', 'Great Cause!');
+INSERT INTO events VALUES (5, 'Golf Tournament', '20130603', '4:30pm', 7, 'golf', 'Ages 18+, Great Fun!');
 
 
 /*Join a couple events*/
