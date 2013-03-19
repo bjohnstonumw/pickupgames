@@ -36,12 +36,24 @@ CREATE TABLE IF NOT EXISTS basicusers (
 	PRIMARY KEY (b_username)
 );
 
+/* now contains atomic user information*/
 CREATE TABLE IF NOT EXISTS users (
 	username VARCHAR(12) NOT NULL,
 	password VARCHAR(40) NOT NULL, 
 	users_zip VARCHAR(5) NOT NULL,
+	name varchar(50),
+	age int(3),
+	photo varchar(50),
+	gender char(1),
 	CONSTRAINT us_zips_zip_fk FOREIGN KEY (users_zip) REFERENCES us_zips(zip),
 	PRIMARY KEY (username)
+);
+
+/*for finding a user's favorite sports*/
+CREATE TABLE IF NOT EXISTS sportuser(
+	username VARCHAR(12) NOT NULL,
+	sport_name VARCHAR(2) NOT NULL,
+	PRIMARY KEY (username, sport_name)
 );
 
 CREATE TABLE IF NOT EXISTS blog (
