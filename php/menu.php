@@ -17,6 +17,7 @@ echo "<a href='index.php'>Homepage</a>";
 #Items accessible to logged in users.
 if ($s_isLoggedIn) { 
 	echo '<a href="joinevent.php">Events</a>'; 
+	echo '<a href="myProfile.php">My Profile</a>'; 
 } 
 
 #Items available to guests
