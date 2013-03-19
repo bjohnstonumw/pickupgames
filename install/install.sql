@@ -143,12 +143,12 @@ INSERT INTO basicusers VALUES ('admin', sha('changeme'));
 
 
 /*Client users, AKA regular site users*/ 
-INSERT INTO users VALUES ('josiah', sha('josiah'), 22485);
-INSERT INTO users VALUES ('maddie', sha('maddie'), 22401);
-INSERT INTO users VALUES ('wang', sha('wang'), 22402);
-INSERT INTO users VALUES ('brian', sha('brain'), 22404);
-INSERT INTO users VALUES ('jake', sha('jake'), 20601);
-INSERT INTO users VALUES ('smith', sha('smith'), 20603);
+INSERT INTO users(username,password,users_zip) VALUES ('josiah', sha('josiah'), 22485);
+INSERT INTO users(username,password,users_zip) VALUES ('maddie', sha('maddie'), 22401);
+INSERT INTO users(username,password,users_zip) VALUES ('wang', sha('wang'), 22402);
+INSERT INTO users(username,password,users_zip) VALUES ('brian', sha('brain'), 22404);
+INSERT INTO users(username,password,users_zip) VALUES ('jake', sha('jake'), 20601);
+INSERT INTO users(username,password,users_zip) VALUES ('smith', sha('smith'), 20603);
 
 /*blog entries*/
 

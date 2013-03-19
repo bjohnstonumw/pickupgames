@@ -69,7 +69,7 @@
 			$p_password = trim($_POST['pw']); //hash the password,  really should be using a more labor intensive encryption like hash() or crypt().
 			$p_zipcode = fix_check_zip($_POST['zipcode']);
 			
-			$query = "INSERT INTO users VALUES ('$p_username', SHA('$p_password'), '$p_zipcode')";
+			$query = "INSERT INTO users(username, password, users_zip) VALUES ('$p_username', SHA('$p_password'), '$p_zipcode')";
 			
 			$result = mysqli_query($db, $query) or die("Error Querying Database in web_CreateAccount()"); 
 			if ($db->affected_rows != 0) {
