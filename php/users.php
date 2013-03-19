@@ -2,7 +2,7 @@
 
 	#@author Josiah Neuberger modified from my sessionDemo code.
 
-	if (!isset($_SESSSION)) { session_start(); } #This checks to see if the session_start() has not been called.
+	if (!isset($_SESSION)) { session_start(); } #This checks to see if the session_start() has not been called.
 	
 	#Call the correct function:
 	if (!isset($_GET['action'])) { $_GET['action'] = "default"; }
