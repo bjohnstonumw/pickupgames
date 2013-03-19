@@ -52,6 +52,59 @@
 								
 									<?php include 'php/db_connect.php'; ?>
 									<?php
+										function calculateDistance($x1,$x2,$y1,$y2){
+												$pi = M_PI / 180;
+												$x1=floatval($x1)*$pi;
+												$x2=floatval($x2)*$pi;
+												$y1=floatval($y1)*$pi;
+												$y2=floatval($y2)*$pi;
+												$dx=floatval($x2-$x1);
+												$dy=floatval($y2-$y1);
+												$a=sin($dx/2)*sin($dx/2)+cos($x1)*cos($x2)*sin($dy/2)*sin($dy/2);
+												$c=2*atan2(sqrt($a),sqrt(1-$a));
+												$r=6372.797*$c;
+												$m=$r*0.621371192;
+												return $m;
+											}
+											
+											function displayWithinDistance($db, $distance, $zip, $p_input){
+												
+											echo "<table id='table-2'>";
+										
+													echo "<tr><th>ID</th><th>Name</th><th>Date</th><th>Time</th><th>Facility ID</th><th>Sport Type</th><th>Additional Information</th></tr>";
+													
+													$allZips = mysqli_query($db, "SELECT * FROM us_zips;") or die("Error Querying Database for events from joinevent.php");
+													
+													$selfLoc = mysqli_query($db,"SELECT * FROM us_zips WHERE zip='$zip';") or die("Error Querying Database for events from joinevent.php");
+													$l = mysqli_fetch_array($selfLoc);
+
+													$selfLat=$l['latitude'];
+													$selfLon=$l['longitude'];
+													while($row = mysqli_fetch_array($allZips)) {
+														$lat=$row['latitude'];
+														$lon=$row['longitude'];
+														$zip=$row['zip'];
+														if(calculateDistance($selfLat,$lat,$selfLon,$lon)<$distance){
+															$q=mysqli_query($db,"SELECT facilities.fac_zip, facilities.name fname, e.*  FROM events e JOIN facilities WHERE facilities.fac_id=e.fac_id AND facilities.fac_zip='$zip' AND (upper(e.name) LIKE upper('%$p_input%') OR upper(e.ad) LIKE upper('%$p_input%') OR upper(e.sport_name) LIKE upper('%$p_input%')) ORDER BY e.event_date, e.event_time;") or die("Error in joining for zips");
+														while($row2=mysqli_fetch_array($q)){
+															$event_id = $row2['event_id'];
+															$event_name = $row2['name'];
+															$event_date = $row2['event_date'];
+															$event_time = $row2['event_time'];
+															$event_fac_id = $row2['fname'];
+															$event_sport_type = $row2['sport_name'];
+															$event_ad = $row2['ad'];
+															
+														$radio = "<input type='radio' name='jevent' value='$event_id' />"; 
+														
+														echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
+													}
+														}
+													}
+													echo "</table>";
+													
+												}
+
 										function load_events($db, $your_query, $isYourEvents, $radio_button_name) {
 												
 											echo "<table id='table-2'>";
@@ -98,19 +151,37 @@
 										</header>
 										<?php
 											echo "<form method = 'post' action='joinevent.php' enctype='multipart/form-data'>";
-											echo "<input type='text' id='search' name='search' size='40'/>";
-											echo "<tr><td><input type='submit' name='submit_search' value='search' /></td><td>&nbsp;</td></tr>";
+											echo "<input type='text' id='search' name='search' size='40'/><br/>";
+											echo "<input type='radio' name='distance' id=m1/> 5 miles<br />";
+											echo "<input type='radio' name='distance' id=m2/> 10 miles<br />";
+											echo "<input type='radio' name='distance' id=m3/> 20 miles<br />";
+											echo "<tr><td><input type='submit' name='submit_search' value='Search' /></td><td>&nbsp;</td></tr>";
 											echo "</form>";
+											
 											
 											if (isset($_POST['submit_search'])) {
 							
 												echo "<form method = 'post' action = 'joinevent.php' enctype='multipart/form-data'>";
 												
-												$p_input= $_POST['search'];
-												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) where upper(e.name) LIKE upper('%$p_input%') OR upper(e.ad) LIKE upper('%$p_input%') OR upper(e.sport_name) LIKE upper('%$p_input%') ORDER BY event_date, event_time";
+												$p_input= mysqli_real_escape_string($db, trim($_POST['search']));
 												
-												load_events($db, $query, FALSE, "events_search");
 												
+												$toGetZip = mysqli_query($db, "SELECT users_zip FROM users WHERE username='$s_username'") or die("Error Querying Database: get userzip");
+												$row = mysqli_fetch_array($toGetZip);
+												$myZip=$row[users_zip];			
+												if(distance==$m1){
+													$d=5;
+												}
+												else if(distance==$m2){
+													$d=10;
+												}
+												else if(distance==$m3){
+													$d=20;
+												}
+												else{
+													$d=30;
+												}
+												displayWithinDistance($db, $d, $myZip, $p_input);
 												echo '<tr><td><input type="submit" name="join_event_from_search" value="Join Event" /></td><td>&nbsp;</td></tr>';
 												echo "</form>";	
 											}
