@@ -95,7 +95,7 @@
 															$event_sport_type = $row2['sport_name'];
 															$event_ad = $row2['ad'];
 															
-														$radio = "<input type='radio' name='jevent' value='$event_id' />"; 
+														$radio = "<input type='radio' name='events_search' value='$event_id' />"; 
 														
 														echo "<tr><td>$radio$event_id</td><td>$event_name</td><td>$event_date</td><td>$event_time</td><td>$event_fac_id</td><td>$event_sport_type</td><td>$event_ad</td></tr>";
 													}
@@ -135,10 +135,10 @@
 											echo "<div>";
 											echo "finally";
 											$eid = $_POST[$radio_button_name]; #no need to escape because it's the id we pulled from the database. (not user input).
-											
+											if(isset($eid)){
 											$query = "INSERT INTO jevents VALUES ('$s_username', '$eid')"; #Use the logged in username.
 											$result_insert = mysqli_query($db, $query) or die("Error Querying Database: Join Event: result_insert function");
-											
+											}
 											echo "</div>";
 											echo '<META http-equiv="refresh" content="0;URL=joinevent.php">'; 
 											
@@ -150,40 +150,45 @@
 											<h2>Search for an Event<h2>
 										</header>
 										<?php
-											echo "<form method = 'post' action='joinevent.php' enctype='multipart/form-data'>";
+											echo "<form method = 'input' action='joinevent.php' enctype='multipart/form-data'>";
 											echo "<input type='text' id='search' name='search' size='40'/><br/>";
-											echo "<input type='radio' name='distance' id=m1/> 5 miles<br />";
-											echo "<input type='radio' name='distance' id=m2/> 10 miles<br />";
-											echo "<input type='radio' name='distance' id=m3/> 20 miles<br />";
-											echo "<tr><td><input type='submit' name='submit_search' value='Search' /></td><td>&nbsp;</td></tr>";
+											echo "<input type='radio' name='d' value=m1 /> 5 miles<br />";
+											echo "<input type='radio' name='d' value=m2 /> 10 miles<br />";
+											echo "<input type='radio' name='d' value=m3 /> 30 miles<br />";
+											echo "<tr><td><input type='submit' name='s' value='Search' /></td><td>&nbsp;</td></tr>";
 											echo "</form>";
 											
 											
-											if (isset($_POST['submit_search'])) {
-							
+											if (isset($_GET['s'])) {
+
 												echo "<form method = 'post' action = 'joinevent.php' enctype='multipart/form-data'>";
 												
-												$p_input= mysqli_real_escape_string($db, trim($_POST['search']));
-												
+												$p_input=mysqli_real_escape_string($db, trim($_GET['search']));
+												$d=mysqli_real_escape_string($db, trim($_GET['d']));
 												
 												$toGetZip = mysqli_query($db, "SELECT users_zip FROM users WHERE username='$s_username'") or die("Error Querying Database: get userzip");
 												$row = mysqli_fetch_array($toGetZip);
-												$myZip=$row[users_zip];			
-												if(distance==$m1){
-													$d=5;
+												$myZip=$row[users_zip];	
+												echo '<META http-equiv="refresh">'; 	
+												if($d=="m1"){
+													$distance=5;
 												}
-												else if(distance==$m2){
-													$d=10;
+												else if($d=="m2"){
+													$distance=10;
 												}
-												else if(distance==$m3){
-													$d=20;
+												else if($d=="m3"){
+													$distance=30;
 												}
 												else{
-													$d=30;
+													$distance=50;
 												}
-												displayWithinDistance($db, $d, $myZip, $p_input);
+												
+												displayWithinDistance($db, $distance, $myZip, $p_input);
+												echo '<META http-equiv="refresh">'; 
 												echo '<tr><td><input type="submit" name="join_event_from_search" value="Join Event" /></td><td>&nbsp;</td></tr>';
 												echo "</form>";	
+												
+
 											}
 											
 											#Insert Event if one is selected and submitted by user:
