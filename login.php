@@ -14,7 +14,7 @@
 -->
 
 <?php
-if (!isset($_SESSSION)) { session_start(); }
+if (!isset($_SESSION)) { session_start(); }
 	$MAX_LOGIN_ATTEMPTS = 3;
 	$s_username = "";
 	if (!isset($_GET['action'])) { $_GET['action'] = "default"; }

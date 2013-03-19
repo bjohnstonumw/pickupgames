@@ -1,7 +1,7 @@
 <?php
 #@author Josiah Neuberger modified from my sessionDemo code.
 
-if (!isset($_SESSSION)) { session_start(); } #This checks to see if the session_start() has not been called.
+if (!isset($_SESSION)) { session_start(); } #This checks to see if the session_start() has not been called.
 
 
 if (isset($_SESSION['isLoggedIn'])) { $s_isLoggedIn = $_SESSION['isLoggedIn']; }
