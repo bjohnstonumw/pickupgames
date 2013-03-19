@@ -8,12 +8,12 @@ Installation:
 
 1. If you haven't already, clone the git into your preferred directory.
 2. Open mySQL. You have to source two sql files: install/install.sql and install/geodist.sql.
-3. localhost/yourdirectory and go. Have a blast.
+3. Point your browser to localhost/yourdirectory and go. Have a blast.
 
 Features:
 
-1. login/logout
-2. Find events (using way cool distance coordinates based on the zip code you enter when you sign up)
+1. login/logout/register
+2. Find events (using way cool distance magic based on the zip code you enter when you sign up)
 3. Make a detailed user profile (but you can't share it yet)
 4. Set up an event
 5. Check out some rules for all the sports we offer.
