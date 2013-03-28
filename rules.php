@@ -77,8 +77,36 @@
 											<h3>Pick Up Football Rules</h3>
 										</header>
 										<p>
-											Basic football rules for beginners:					
+										Basic football rules for beginners:					
 										</p>
+										<ol>
+										<li>Structure of the Game:</li>
+										<ul>
+										<li>Football is played on a rectangular field one hundred yards long x 160 yards wide,with a ten foot long area at each end called the end zone.</li>
+										<li>Two opposing teams of 11 players that take turns at Offense, having possession of the ball attempting to score, or Defense, attempting to stop the offense from scoring.</li>
+										<li>Time of play is 60 minutes, with 4 15 min quarters. </li>
+										</ul>
+										<li>Scoring Points:</li>
+										<ul>
+										<li>Touchdown-6 pts are scored if the ball is thrown or carried into the opponents end zone.</li>
+										<li>Point after Touchdown-1 pt scored kicking the ball between the goal posts or 2 pts throwing/carrying the ball into the end zone </li>
+										<li>Field Goal-3 pts if the team decides to kick the ball during their possession </li>
+										<li>Safety-2 pts if an offensive player is in possession of the ball and is brought to the ground by a defensive player the defensive team gets points.</li>
+										</ul>
+										<li>Starting a Game:</li>
+										<ul>
+										<li>Before the game team captains come together to decide a few things. Someone flips a coin and the visiting team calls heads or tails while it's in the air. If they win the coin toss they choose who start's with the ball or they choose which end of the field they want to defend. The positions and who starts with
+										the ball gets switched after half time. Also the positions are switched after each quarter.</li>
+										<li>Which ever team has been chosen to defend first must kick the ball off to the offense. A kickoff happens at the beginning of the game, beginning of the second half, and after a scoring drive. </li>
+										</ul>
+										<li>Playing the Game:</li>
+										<ul>
+										<li>When a team is on offense, they must move the ball forward toward the end zone. They have 4 attempts to move 10 or more yards, if they get the 10 yards the attempts restart.</li>
+										<li>If however the offense fails to move the ball 10 yards in 4 attempts they must turn the ball over to the opponent.</li>
+										<li>If instead on 4th down the offense can decide to punt the ball to the other team. If the team is close enough to the end zone to kick a field goal.</li>
+										</ul>
+										</ol>
+										
 									</section>
 									
 									<section style="border-bottom:1px dashed;">
