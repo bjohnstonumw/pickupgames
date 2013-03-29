@@ -1,4 +1,3 @@
-<!DOCTYPE HTML>
 <!--
 	Modified version of HTML5 Up template:
 	
@@ -12,7 +11,6 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
-
 <?php
 if (!isset($_SESSION)) { session_start(); }
 	$MAX_LOGIN_ATTEMPTS = 3;
@@ -34,7 +32,7 @@ if (!isset($_SESSION)) { session_start(); }
 		$s_isLoggedIn = false;
 	}
 ?>
-
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Get in the Game: Login</title>

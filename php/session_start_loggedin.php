@@ -1,6 +1,6 @@
 <?php
+if (!isset($_SESSION)) { session_start(); } #This checks to see if the session_start() has not been called.
 #@author Josiah Neuberger modified from my sessionDemo code.
-
 if (!isset($_SESSION)) { session_start(); } #This checks to see if the session_start() has not been called.
 
 

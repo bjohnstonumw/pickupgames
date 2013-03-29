@@ -1,8 +1,7 @@
 <?php
-
-	#@author Josiah Neuberger modified from my sessionDemo code.
-
 	if (!isset($_SESSION)) { session_start(); } #This checks to see if the session_start() has not been called.
+	#@author Josiah Neuberger modified from my sessionDemo code.
+	
 	
 	#Call the correct function:
 	if (!isset($_GET['action'])) { $_GET['action'] = "default"; }
@@ -38,7 +37,7 @@
 				
 				
 				$_SESSION['username'] = $row['username'];
-				$_SESSION['zipcode'] = $row['zipcode'];
+				$_SESSION['zipcode'] = $row['users_zip'];
 				$_SESSION['isLoggedIn'] = true;
 				$_SESSION['loginFailed'] = false;
 				

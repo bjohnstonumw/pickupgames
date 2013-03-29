@@ -1,3 +1,4 @@
+<?php include 'php/session_start_loggedin.php'; ?>
 <!DOCTYPE HTML>
 <!--
 	Modified version of HTML5 Up template:
@@ -12,10 +13,6 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
-
-
-<?php include 'php/session_start_loggedin.php'; ?>
-
 <html>
 	<head>
 		<title>Get in the Game: A Pickup Sports Game Site</title>
