@@ -115,6 +115,7 @@ CREATE TABLE IF NOT EXISTS events (
 	fac_id INT(11) NOT NULL,
 	sport_name VARCHAR(20) NOT NULL,
 	ad TEXT DEFAULT NULL,
+	index (event_date),
 	CONSTRAINT facilities_fac_id_fk FOREIGN KEY (fac_id) REFERENCES facilities(fac_id),
 	CONSTRAINT sports_sport_name_fk FOREIGN KEY (sport_name) REFERENCES sports(sport_name),
 	PRIMARY KEY (event_id)
@@ -148,7 +149,7 @@ INSERT INTO users(username,password,users_zip) VALUES ('maddie', sha('maddie'), 
 INSERT INTO users(username,password,users_zip) VALUES ('wang', sha('wang'), 22402);
 INSERT INTO users(username,password,users_zip) VALUES ('brian', sha('brain'), 22404);
 INSERT INTO users(username,password,users_zip) VALUES ('jake', sha('jake'), 20601);
-INSERT INTO users(username,password,users_zip) VALUES ('smith', sha('smith'), 20603);
+INSERT INTO users(username,password,users_zip) VALUES ('smith', sha('smith'), 22485);
 
 /*blog entries*/
 

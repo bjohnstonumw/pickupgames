@@ -7,7 +7,7 @@ It's a site for setting up and finding pickup games so you can make friends on t
 Installation:
 
 1. If you haven't already, clone the git into your preferred directory.
-2. Open mySQL. You have to source two sql files: install/install.sql and install/geodist.sql.
+2. Open mySQL. You have to source two sql files: install/install.sql.
 3. Point your browser to localhost/yourdirectory and go. Have a blast.
 
 Features:
@@ -17,6 +17,10 @@ Features:
 3. Make a detailed user profile (but you can't share it yet)
 4. Set up an event
 5. Check out some rules for all the sports we offer.
+
+Default Accounts:
+1. user: jake password: jake zipcode: 20601
+2. user: smith password: smith zipcode: 22485
 
 That's about it right now.
 

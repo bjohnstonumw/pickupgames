@@ -47,6 +47,20 @@
 							<div class="12u">
 							
 								<!-- Main Content -->
+								
+									<section>
+									
+										<header>
+											<h2>Tyler Hall's distance calculator PHP Function via Snipplr.com</h2>
+											<h3>Our site uses this function to search for nearby pickupgames</h3>
+										</header>
+										
+										<p>
+											<text>function distance($lat1, $lng1, $lat2, $lng2, $miles = true)</text><br>
+											<a href="http://snipplr.com/view.php?codeview&id=2531" target="_blank">See the full function at Snipplr.com</a>
+										</p>
+									</section>
+									
 									<section>
 										
 										<header>

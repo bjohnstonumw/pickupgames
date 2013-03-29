@@ -208,12 +208,23 @@
 									<section>
 										<header>
 											<h2>Upcoming Events <a href="event.php" style="float:right; border:1px solid black; background-color: gray; color: white; padding:5px; display:inline-block;">Create a New Event!</a></h2>
+							
 										</header>
-											
+										
+										<form method = "post" action ="joinevent.php" entctype="multipart/form-data">
+										
+											<input type="date" name="sortbydate" /><input type="submit" name="sortbydate_submit" value="Sort by date" />
+										</form>
+										
 										<form method = "post" action = "joinevent.php" enctype="multipart/form-data">
-											
-											<?php
-												$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC LIMIT 10";
+										
+										<?php
+												if (isset($_POST['sortbydate_submit']) and isset($_POST['sortbydate']) and $_POST['sortbydate'] <> "") {
+													$sort_date = mysqli_real_escape_string($db, trim($_POST['sortbydate']));
+													$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) WHERE e.event_date = '$sort_date'";
+												} else {
+													$query = "SELECT e.*, f.name as fname FROM events as e left join facilities as f on (e.fac_id = f.fac_id) ORDER BY event_date DESC LIMIT 10";
+												}
 												load_events($db, $query, FALSE, "events_upcoming");
 											?>
 											<tr><td><input type="submit" name="join_event_from_upcoming" value="Join Event" /></td><td>&nbsp;</td></tr>
