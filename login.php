@@ -1,16 +1,3 @@
-<!--
-	Modified version of HTML5 Up template:
-	
-	Halcyonic 2.5 by HTML5 Up!
-	html5up.net | @n33co
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-	
-	PHP and Modified HTML by:
-	@Author: Josiah Neuberger
-	@Author: Maddie Lord
-	@Author: Michael Wang
-	@Author: Brian Johnston
--->
 <?php
 if (!isset($_SESSION)) { session_start(); }
 	$MAX_LOGIN_ATTEMPTS = 3;
@@ -32,6 +19,22 @@ if (!isset($_SESSION)) { session_start(); }
 		$s_isLoggedIn = false;
 	}
 ?>
+
+<!--
+	Modified version of HTML5 Up template:
+	
+	Halcyonic 2.5 by HTML5 Up!
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	
+	PHP and Modified HTML by:
+	@Author: Josiah Neuberger
+	@Author: Maddie Lord
+	@Author: Michael Wang
+	@Author: Brian Johnston
+-->
+
+
 <!DOCTYPE HTML>
 <html>
 	<head>

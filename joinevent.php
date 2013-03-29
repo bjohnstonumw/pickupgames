@@ -1,4 +1,5 @@
-<!DOCTYPE HTML>
+<?php include 'php/session_start_loggedin.php';?>
+<?php if(!isset($s_isLoggedIn) or $s_isLoggedIn == false) { die('Direct access not permitted'); } #From this point forward we can assume the user is logged in.?>
 <!--
 	Modified version of HTML5 Up template:
 	
@@ -12,9 +13,7 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
-<?php include 'php/session_start_loggedin.php';?>
-<?php if(!isset($s_isLoggedIn) or $s_isLoggedIn == false) { die('Direct access not permitted'); } #From this point forward we can assume the user is logged in.?>
-
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Get in the Game: Join an Event</title>
@@ -67,7 +66,7 @@
 												return $m;
 											}
 											
-											function displayWithinDistance($db, $distance, $zip, $p_input){
+										function displayWithinDistance($db, $distance, $zip, $p_input){
 												
 											echo "<table id='table-2'>";
 										
@@ -103,7 +102,7 @@
 													}
 													echo "</table>";
 													
-												}
+										}
 
 										function load_events($db, $your_query, $isYourEvents, $radio_button_name) {
 												

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<?php include 'php/session_start_loggedin.php'; ?>
 <!--
 	Halcyonic 2.5 by HTML5 Up!
 	html5up.net | @n33co
@@ -10,9 +10,7 @@
 	@Author: Michael Wang
 	@Author: Brian Johnston
 -->
-
-<?php include 'php/session_start_loggedin.php'; ?>
-
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Rules and Information for Pickup Games</title>
