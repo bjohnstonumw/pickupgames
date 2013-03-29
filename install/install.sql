@@ -49,6 +49,12 @@ CREATE TABLE IF NOT EXISTS users (
 	PRIMARY KEY (username)
 );
 
+CREATE TABLE IF NOT EXISTS friends (
+	username VARCHAR(12) NOT NULL,
+	friend VARCHAR(12) NOT NULL,
+	PRIMARY KEY (username, friend)
+);
+
 /*for finding a user's favorite sports*/
 CREATE TABLE IF NOT EXISTS sportuser(
 	username VARCHAR(12) NOT NULL,
@@ -144,12 +150,16 @@ INSERT INTO basicusers VALUES ('admin', sha('changeme'));
 
 
 /*Client users, AKA regular site users*/ 
-INSERT INTO users(username,password,users_zip) VALUES ('josiah', sha('josiah'), 22485);
-INSERT INTO users(username,password,users_zip) VALUES ('maddie', sha('maddie'), 22401);
-INSERT INTO users(username,password,users_zip) VALUES ('wang', sha('wang'), 22402);
-INSERT INTO users(username,password,users_zip) VALUES ('brian', sha('brain'), 22404);
-INSERT INTO users(username,password,users_zip) VALUES ('jake', sha('jake'), 20601);
-INSERT INTO users(username,password,users_zip) VALUES ('smith', sha('smith'), 22485);
+INSERT INTO users VALUES ('josiah', sha('josiah'), 22485, 'Josiah Neuberger', '30', 'profile_pics/josiah.jpg', 'M');
+INSERT INTO users VALUES ('maddie', sha('maddie'), 22401, 'Maddie Lord', '31', 'profile_pics/maddie.jpg', 'F');
+INSERT INTO users VALUES ('wang', sha('wang'), 22402, 'Michael Wang', '32', 'profile_pics/wang.jpg', 'M');
+INSERT INTO users VALUES ('brian', sha('brain'), 22404, 'Brian Johnston', '33', 'profile_pics/brian.jpg', 'M');
+INSERT INTO users VALUES ('jake', sha('jake'), 20601, 'Jake Morgan', '22', 'profile_pics/jake.jpg', 'M');
+INSERT INTO users VALUES ('smith', sha('smith'), 22485, 'Sarah Smith', '19', 'profile_pics/smith.jpg', 'F');
+
+/*Add some friends*/
+INSERT INTO friends VALUES ('josiah', 'jake');
+INSERT INTO friends VALUES ('jake', 'smith');
 
 /*blog entries*/
 
