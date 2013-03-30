@@ -61,7 +61,7 @@
 												
 													<form method = "post" action = "blog.php" enctype="multipart/form-data">
 														<table>
-															<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=70 >"Type Blog Entry Here" </textarea> </td></tr>
+															<tr><td>&nbsp;</td><td> <textarea name="blogentry" id="blogentry" rows=6 cols=40 >"Type Blog Entry Here" </textarea> </td></tr>
 															
 															<tr><td><input type="submit" name="submit_addblogentry" value="Add Blog Entry" /></td><td>&nbsp;</td></tr>
 

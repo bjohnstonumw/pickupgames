@@ -165,7 +165,8 @@
 											<h2>Your Friends</h2>
 										</header>
 											<?php
-												$query = "SELECT uf.* from friends f inner join users u on (f.username = u.username) inner join users uf on (f.friend = uf.username) where f.username='$s_username'";
+												#$query = "SELECT uf.* from friends f inner join users u on (f.username = u.username) inner join users uf on (f.friend = uf.username) where f.username='$s_username'";
+												$query = "SELECT * FROM view_friends WHERE id='$s_username'";
 												load_profile($db, $query, FALSE, "not_needed"); 	
 											?>
 									</section>

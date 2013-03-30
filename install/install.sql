@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS users (
 	name varchar(50),
 	age int(3),
 	photo varchar(50),
-	gender char(1),
+	gender char(1) CHECK (gender IN ('M', 'F')),
 	CONSTRAINT us_zips_zip_fk FOREIGN KEY (users_zip) REFERENCES us_zips(zip),
 	PRIMARY KEY (username)
 );
@@ -141,6 +141,11 @@ CREATE TABLE IF NOT EXISTS jevents (
 /* End Create Tables */
 
 
+/* Views */
+CREATE VIEW view_friends AS SELECT u.username id, uf.* FROM friends f 
+	INNER JOIN users u ON (f.username = u.username) INNER JOIN users uf
+	ON (f.friend = uf.username);
+
 /*
 *Fill tables with demo data
 */
@@ -160,6 +165,10 @@ INSERT INTO users VALUES ('smith', sha('smith'), 22485, 'Sarah Smith', '19', 'pr
 /*Add some friends*/
 INSERT INTO friends VALUES ('josiah', 'jake');
 INSERT INTO friends VALUES ('jake', 'smith');
+INSERT INTO friends VALUES ('josiah', 'brian');
+INSERT INTO friends VALUES ('jake', 'maddie');
+INSERT INTO friends VALUES ('jake', 'wang');
+INSERT INTO friends VALUES ('smith', 'brian');
 
 /*blog entries*/
 

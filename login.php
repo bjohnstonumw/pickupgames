@@ -82,7 +82,7 @@ if (!isset($_SESSION)) { session_start(); }
 										case 'newAccount':
 											echo "<h2>Create Account</h2>";
 											echo '<form method="post" action="php/user.php?action=createAccount">';
-											echo "<p>I'm sorry you're account could not be created. Please try again<p>";
+											echo "<p>I'm sorry you're account could not be created. Please try again. Check if your zipcode is valid.<p>";
 											break;
 										case 'loginFailed':
 											echo "<h2>Retry Login</h2>";

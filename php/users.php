@@ -32,10 +32,6 @@
 			 
 			if ($row = mysqli_fetch_array($result))
 			{
-				#echo $query . "<br>";
-				#print_r($row); #FIXME: @DELETE
-				
-				
 				$_SESSION['username'] = $row['username'];
 				$_SESSION['zipcode'] = $row['users_zip'];
 				$_SESSION['isLoggedIn'] = true;
@@ -70,8 +66,13 @@
 			
 			$query = "INSERT INTO users(username, password, users_zip) VALUES ('$p_username', SHA('$p_password'), '$p_zipcode')";
 			
-			$result = mysqli_query($db, $query) or die("Error Querying Database in web_CreateAccount()"); 
-			if ($db->affected_rows != 0) {
+			$result = mysqli_query($db, $query);
+
+			#echo "DEBUG: Errormessage: ", mysqli_error($db);
+			$sql_error = mysqli_errno($db);
+			$sql_error_badzip = 1452;
+			
+			if ($db->affected_rows != 0 and $sql_error == 0) {
 				#echo "DEBUG: @DELETE Affected Rows: " . $db->affected_rows;
 				$_SESSION['username'] = $result['username'];
 				
