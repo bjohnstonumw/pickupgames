@@ -115,21 +115,55 @@
 																return true;
 															}
 														}).remove();
-
-														/*
-														$("option").ready(function(){
-														var $optionZip = $(this).attr('zip');
-														var $option = $(this);
-														if(optionZip!==recentZip){
-															$($option).remove();
-														}
-
-													});
-
-														*/
 														
 													});
-												});
+
+
+													$("tr[toHide='yes']").hide();
+													$("td[toHide='yes']").hide();
+													$("input[toHide='yes']").hide();
+													$("input[id='addFacility']").data('status', 'add');
+
+
+													$("input[id='addFacility']").click(function(){
+														if($(this).data('status')=='add'){
+															bap();
+														}
+														else if($(this).data('status')=='subtract'){
+															subtract();
+														}
+														else{
+															console.log("Now you fucked up");
+														}
+													});
+
+													
+
+												
+														function bap(){
+															console.log("Add");
+															//console.log((this).data('status'));
+															$("input[id='addFacility']").data('status','subtract');
+															//console.log((this).data('status'));
+															$("tr[toHide='yes']").show();
+															$("td[toHide='yes']").show();
+															$("input[toHide='yes']").show();
+															$("input[id='addFacility']").attr('value', 'Nevermind');
+														};
+
+														function subtract(){
+															console.log("Subtract");
+															//console.log((this).data('status'));
+															$("input[id='addFacility']").data('status','add');
+															//console.log((this).data('status'));
+															$("tr[toHide='yes']").hide();
+															$("td[toHide='yes']").hide();
+															$("input[toHide='yes']").hide();
+															$("input[id='addFacility']").attr('value', 'Add a New Facility');
+														};
+													});
+
+
 
 												</script>
 
@@ -155,8 +189,9 @@
 												
 													echo "<option value='$fac_id', zip='$fac_zip', fac='yes'>$fac_name</option>";
 												}
-												echo "</select></td></tr>";
+												echo "</select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=button id=addFacility value='Add a New Facility', status='bap'></td></tr>";
 												
+												echo "<tr toHide='yes'><td toHide='yes'>Name of Facility: </td><td toHide='yes'><input type=text, id=newFacName, toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Street Address: </td><td toHide='yes'><input type=text, id=newFacAddress, toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Zipcode: </td><td> <input type=text, id=newFacZip, toHide='yes'></td></tr>";
 												
 											?>
 											
