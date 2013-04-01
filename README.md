@@ -14,7 +14,7 @@ Features:
 
 1. login/logout/register
 2. Find events (using way cool distance magic based on the zip code you enter when you sign up)
-3. Make a detailed user profile (but you can't share it yet)
+3. Make a detailed user profile and add friends
 4. Set up an event
 5. Check out some rules for all the sports we offer.
 
@@ -22,13 +22,7 @@ Default Accounts:
 1. user: jake password: jake zipcode: 20601
 2. user: smith password: smith zipcode: 22485
 
-That's about it right now.
 
 Future updates:
-1. Make some friends with your profile
-2. On that note, integration with the Facebook API if we're feeling froggy.
-
-Things that will screw up if you poke them too hard:
-
-1. That picture upload on the profile page doesn't upload anything. It's just the path to a picture you direct it to
-on your hard disk. Can't see anything wrong with that, no siree.
+1. Search for friends. Right now the site gives you a list of friends.
+2. On the social network note, integration with the Facebook API if we're feeling froggy.
