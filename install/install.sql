@@ -228,25 +228,25 @@ INSERT INTO sports_equipment VALUES ('tennis','tennis racket');
 
 /*Facilities*/
 INSERT INTO facilities VALUES (null, 'Capital Club House', '3033 Waldorf Market Pl', '20603');
-INSERT INTO facility_Sports VALUES (1, 'basketball'), (1, 'ice hockey'), (1, 'soccer indoor'), (1, 'volleyball');
+INSERT INTO facility_sports VALUES (1, 'basketball'), (1, 'ice hockey'), (1, 'soccer indoor'), (1, 'volleyball');
 
 INSERT INTO facilities VALUES (null, 'University of Mary Washington', '1301 College Avenue', '22401');
-INSERT INTO facility_Sports VALUES (2, 'soccer'), (2, 'basketball'), (2, 'volleyball'), (2, 'baseball'), (2, 'football');
+INSERT INTO facility_sports VALUES (2, 'soccer'), (2, 'basketball'), (2, 'volleyball'), (2, 'baseball'), (2, 'football');
 
 INSERT INTO facilities VALUES (3, 'Bryantown Sports Complex', '5665 Bryantown Road', '20601');
-INSERT INTO facility_Sports VALUES (3, 'soccer');
+INSERT INTO facility_sports VALUES (3, 'soccer');
 
 INSERT INTO facilities VALUES (4, 'King George YMCA', '10545 Kings Highway', '22485');
-INSERT INTO facility_Sports VALUES (4, 'basketball'), (4, 'water polo'), (4, 'tennis'), (4, 'volleyball');
+INSERT INTO facility_sports VALUES (4, 'basketball'), (4, 'water polo'), (4, 'tennis'), (4, 'volleyball');
 
 INSERT INTO facilities VALUES (5, 'Barnsfield Park', '3360 Barnesfield Road', '22485');
-INSERT INTO facility_Sports VALUES (5, 'baseball'), (5, 'soccer');
+INSERT INTO facility_sports VALUES (5, 'baseball'), (5, 'soccer');
 
 INSERT INTO facilities VALUES (6, 'Cameron Hills Golf Links', '14140 Salem Church Road', '22485');
-INSERT INTO facility_Sports VALUES (6, 'golf');
+INSERT INTO facility_sports VALUES (6, 'golf');
 
 INSERT INTO facilities VALUES (7, 'White Plains Regional Park and Golf Course', '1015 Saint Charles Parkway', '20695');
-INSERT INTO facility_Sports VALUES (7, 'baseball'), (7, 'soccer'), (7, 'golf');
+INSERT INTO facility_sports VALUES (7, 'baseball'), (7, 'soccer'), (7, 'golf');
 
 
 
