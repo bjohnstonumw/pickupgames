@@ -75,21 +75,91 @@
 												echo "</select></td></tr>";
 											
 												#Get the available facilities.
-												$query2 = "SELECT fac_id, name FROM facilities ORDER BY fac_id ASC";
+												
+												?>
+
+
+
+												<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+												</script>
+												<script>
+
+												$(document).ready(function(){
+													opt=[];
+													opt = $("select[name='location'] option").toArray();
+
+													
+													 var $recentZip = $("input[id='zipvalue']").attr('value');
+														console.log($("input[id='zipvalue']").attr('value'));
+														$("option[fac='yes']").remove();
+														$("select[name='location']").append(opt);
+														
+														$("select[name='location'] option").filter(function() {
+															if($(this).attr('zip') !== $recentZip)
+															{
+																return true;
+															}
+														}).remove();
+
+
+													$("input[id='zipvalue']").keyup(function(){
+
+														var $recentZip = $(this).val();
+														console.log($(this).val());
+														$("option[fac='yes']").remove();
+														$("select[name='location']").append(opt);
+														
+														$("select[name='location'] option").filter(function() {
+															if($(this).attr('zip') !== $recentZip)
+															{
+																return true;
+															}
+														}).remove();
+
+														/*
+														$("option").ready(function(){
+														var $optionZip = $(this).attr('zip');
+														var $option = $(this);
+														if(optionZip!==recentZip){
+															$($option).remove();
+														}
+
+													});
+
+														*/
+														
+													});
+												});
+
+												</script>
+
+
+												
+												<?php
+
+												$myZip= $s_zipcode;
+												echo "<tr><td>Event Zipcode: </td><td><input type = 'text', id = 'zipvalue' name = 'zipvalue', value='$myZip'></td></tr>";
+												
+												$currentZip= $_POST['zipvalue'];
+												
+												$query2 = "SELECT fac_id, name, fac_zip FROM facilities ORDER BY fac_id ASC";
 												
 												echo "<tr><td>Facility:</td><td><select name='location'>";
-												
 												$result2 = mysqli_query($db, $query2) or die("Error Querying Database for facilities from event.php");
 													
 													
 												while($row = mysqli_fetch_array($result2)) {
 													$fac_id = $row['fac_id'];
 													$fac_name = $row['name'];
-													
-													echo "<option value='$fac_id'>$fac_name</option>";
+													$fac_zip = $row['fac_zip'];
+												
+													echo "<option value='$fac_id', zip='$fac_zip', fac='yes'>$fac_name</option>";
 												}
 												echo "</select></td></tr>";
+												
+												
 											?>
+											
 											<tr><td style="vertical-align:middle;">Advertise your event:</td>
 											<td><textarea rows = "10" cols = "75" name = "ad"></textarea><br><td>
 											<td><input type = "submit" value="Submit Event"></td></tr>
