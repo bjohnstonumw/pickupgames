@@ -133,18 +133,18 @@
 
 
 													$("input[id='zipvalue']").keyup(function(){
-
-														var $recentZip = $(this).val();
-														console.log($(this).val());
 														$("option[fac='yes']").remove();
 														$("select[name='location']").append(opt);
-														
+														var $recentZip = $(this).val();
+														if ($recentZip.length>0){
+														console.log($(this).val());
 														$("select[name='location'] option").filter(function() {
 															if($(this).attr('zip') !== $recentZip)
 															{
 																return true;
 															}
 														}).remove();
+													}
 														
 													});
 
