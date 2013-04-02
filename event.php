@@ -73,14 +73,43 @@
 													echo "<option value='$sport_name'>$sport_name</option>";
 												}
 												echo "</select></td></tr>";
-											
-												#Get the available facilities.
+
+
+												$myZip= $s_zipcode;
+												echo "<tr><td>Event Zipcode: </td><td><input type = 'text', id = 'zipvalue' name = 'zipvalue', value='$myZip'></td></tr>";
 												
-												?>
+												$currentZip= $_POST['zipvalue'];
+												
+												$query2 = "SELECT fac_id, name, fac_zip FROM facilities ORDER BY fac_id ASC";
+												
+												echo "<tr><td>Facility:</td><td><select name='location'>";
+												$result2 = mysqli_query($db, $query2) or die("Error Querying Database for facilities from event.php");
+													
+													
+												while($row = mysqli_fetch_array($result2)) {
+													$fac_id = $row['fac_id'];
+													$fac_name = $row['name'];
+													$fac_zip = $row['fac_zip'];
+												
+													echo "<option value='$fac_id', zip='$fac_zip', fac='yes'>$fac_name</option>";
+												}
+												
+												
+											?>
+											</select>&nbsp<input type=button name='addFacility' value='Add a New Facility' status='bap'></td></tr>
+
+											<tr toHide='yes'><td toHide='yes'>Name of Facility: </td><td toHide='yes'><input type=text, name='newFacName', toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Street Address: </td><td toHide='yes'><input type=text, name='newFacAddress', toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Zipcode: </td><td> <input type=text, name='newFacZip', toHide='yes'></td></tr>
 
 
+											<tr><td style="vertical-align:middle;">Advertise your event:</td>
+											<td><textarea rows = "10" cols = "75" name = "ad"></textarea><br><td>
+											<td><input type = "submit" value="Submit Event"></td></tr>
+										</table>
+										</form>
 
-												<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+									</section>
+
+									<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 												</script>
 												<script>
 
@@ -122,10 +151,10 @@
 													$("tr[toHide='yes']").hide();
 													$("td[toHide='yes']").hide();
 													$("input[toHide='yes']").hide();
-													$("input[id='addFacility']").data('status', 'add');
+													$("input[name='addFacility']").data('status', 'add');
 
 
-													$("input[id='addFacility']").click(function(){
+													$("input[name='addFacility']").click(function(){
 														if($(this).data('status')=='add'){
 															bap();
 														}
@@ -133,7 +162,7 @@
 															subtract();
 														}
 														else{
-															console.log("Now you fucked up");
+															console.log("Aaaand this is where I'd put an error messege. IF I HAD ONE.");
 														}
 													});
 
@@ -143,67 +172,31 @@
 														function bap(){
 															console.log("Add");
 															//console.log((this).data('status'));
-															$("input[id='addFacility']").data('status','subtract');
+															$("input[name='addFacility']").data('status','subtract');
 															//console.log((this).data('status'));
 															$("tr[toHide='yes']").show();
 															$("td[toHide='yes']").show();
 															$("input[toHide='yes']").show();
-															$("input[id='addFacility']").attr('value', 'Nevermind');
+															$("input[name='addFacility']").attr('value', 'Use an Existing Facility');
+															$("select[name='location']").hide();
 														};
 
 														function subtract(){
 															console.log("Subtract");
 															//console.log((this).data('status'));
-															$("input[id='addFacility']").data('status','add');
+															$("input[name='addFacility']").data('status','add');
 															//console.log((this).data('status'));
 															$("tr[toHide='yes']").hide();
 															$("td[toHide='yes']").hide();
 															$("input[toHide='yes']").hide();
-															$("input[id='addFacility']").attr('value', 'Add a New Facility');
+															$("input[name='addFacility']").attr('value', 'Add a New Facility');
+															$("select[name='location']").show();
 														};
 													});
 
 
 
 												</script>
-
-
-												
-												<?php
-
-												$myZip= $s_zipcode;
-												echo "<tr><td>Event Zipcode: </td><td><input type = 'text', id = 'zipvalue' name = 'zipvalue', value='$myZip'></td></tr>";
-												
-												$currentZip= $_POST['zipvalue'];
-												
-												$query2 = "SELECT fac_id, name, fac_zip FROM facilities ORDER BY fac_id ASC";
-												
-												echo "<tr><td>Facility:</td><td><select name='location'>";
-												$result2 = mysqli_query($db, $query2) or die("Error Querying Database for facilities from event.php");
-													
-													
-												while($row = mysqli_fetch_array($result2)) {
-													$fac_id = $row['fac_id'];
-													$fac_name = $row['name'];
-													$fac_zip = $row['fac_zip'];
-												
-													echo "<option value='$fac_id', zip='$fac_zip', fac='yes'>$fac_name</option>";
-												}
-												echo "</select>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type=button id=addFacility value='Add a New Facility', status='bap'></td></tr>";
-												
-												echo "<tr toHide='yes'><td toHide='yes'>Name of Facility: </td><td toHide='yes'><input type=text, id=newFacName, toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Street Address: </td><td toHide='yes'><input type=text, id=newFacAddress, toHide='yes'></td></tr><tr toHide='yes'><td toHide='yes'>Zipcode: </td><td> <input type=text, id=newFacZip, toHide='yes'></td></tr>";
-												
-											?>
-											
-											<tr><td style="vertical-align:middle;">Advertise your event:</td>
-											<td><textarea rows = "10" cols = "75" name = "ad"></textarea><br><td>
-											<td><input type = "submit" value="Submit Event"></td></tr>
-										</table>
-										</form>
-
-									</section>
-
-									
 
 
 							</div>
