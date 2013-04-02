@@ -132,7 +132,6 @@
 										function insert_selected_event($db, $s_username, $radio_button_name) {
 
 											echo "<div>";
-											echo "finally";
 											$eid = $_POST[$radio_button_name]; #no need to escape because it's the id we pulled from the database. (not user input).
 											if(isset($eid)){
 											$query = "INSERT INTO jevents VALUES ('$s_username', '$eid')"; #Use the logged in username.
@@ -149,7 +148,7 @@
 											<h2>Search for an Event<h2>
 										</header>
 										<?php
-											echo "<form method = 'input' action='joinevent.php' enctype='multipart/form-data'>";
+											echo "<form method = 'get' action='joinevent.php' enctype='multipart/form-data'>";
 											echo "<input type='text' id='search' name='search' size='40'/><br/>";
 											echo "<input type='radio' name='d' value=m1 /> 5 miles<br />";
 											echo "<input type='radio' name='d' value=m2 /> 10 miles<br />";
@@ -163,11 +162,12 @@
 												echo "<form method = 'post' action = 'joinevent.php' enctype='multipart/form-data'>";
 												
 												$p_input=mysqli_real_escape_string($db, trim($_GET['search']));
-												$d=mysqli_real_escape_string($db, trim($_GET['d']));
+												if (isset($_GET['d'])) { $d=mysqli_real_escape_string($db, trim($_GET['d'])); }
+												else { $d="none_selected"; }
 												
 												$toGetZip = mysqli_query($db, "SELECT users_zip FROM users WHERE username='$s_username'") or die("Error Querying Database: get userzip");
 												$row = mysqli_fetch_array($toGetZip);
-												$myZip=$row[users_zip];	
+												$myZip=$row['users_zip'];	
 												echo '<META http-equiv="refresh">'; 	
 												if($d=="m1"){
 													$distance=5;

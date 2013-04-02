@@ -79,7 +79,9 @@
 												$myZip= $s_zipcode;
 												echo "<tr><td>Event Zipcode: </td><td><input type = 'text', id = 'zipvalue' name = 'zipvalue', value='$myZip'></td></tr>";
 												
-												$currentZip= $_POST['zipvalue'];
+												if (isset($_POST['zipvalue'])) { $currentZip = $_POST['zipvalue']; }
+												else { $currentZip = $myZip; }
+												
 												
 												$query2 = "SELECT fac_id, name, fac_zip FROM facilities ORDER BY fac_id ASC";
 												
@@ -110,9 +112,8 @@
 
 									</section>
 
-									<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-												</script>
-												<script>
+									<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+											<script>
 
 												$(document).ready(function(){
 													opt=[];

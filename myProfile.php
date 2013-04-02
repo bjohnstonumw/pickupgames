@@ -47,7 +47,7 @@
 							
 								<!-- Main Content -->
 			
-<?
+<?php
 
 include 'php/db_connect.php';
 
@@ -62,10 +62,15 @@ if (isset($_POST['sport'] )){
 
 if (isset($_POST['submit'])){
 
-if (isset($_POST['photo'])){
-	$photo = $_POST['photo'];
+if (!empty($_FILES['profilepic']['name'])){
+
+	$yourprofilepic = "profile_pics/$s_username";
+	move_uploaded_file($_FILES['profilepic']['tmp_name'], $yourprofilepic);
+	$photo = $yourprofilepic;
+	
 } else {
 	$photo = NULL;
+	echo "test";
 }
 
 if (isset($_POST['name'])){
@@ -94,6 +99,9 @@ if (isset($_POST['zip'])){
 
 $updateuser = "UPDATE users SET photo='$photo', name='$name', age=$age, gender = '$gender', users_zip = $zip WHERE username = '$s_username'";
 $result = mysqli_query($db, $updateuser) or die ("Blew up setting your user data, fella.");
+
+
+echo '<META http-equiv="refresh" content="0;URL=users.php">'; 
 }
 
 $getinfoquery = "SELECT photo, name, age, gender, users_zip FROM users WHERE username = '$s_username'";
@@ -109,11 +117,11 @@ $zip = $row['users_zip'];
 
 
 echo"
-	<form name = 'profile' method = 'post'>
+	<form name = 'profile' method = 'post' enctype='multipart/form-data'>
 		<header><h2>$s_username's Profile</h2></header>
 		<p>Note: All information is publicly accessible. Feel free to leave anything (except zip code) blank.</p>
 		<img src = '$photo'>
-		<p>Change your picture? <input type = 'text' name = 'photo' value = '$photo'></p>
+		<p>Change your picture? <input type='file' id='profilepic' name='profilepic' accept='image/*' /></p>
 		<h3>Your Vitals</h3>
 		<p>Name: <input type = 'text' name = 'name' value = '$name'></p>
 		<p>Age: <input type = 'text' name = 'age' value = '$age'></p>

@@ -114,7 +114,9 @@
 											<h3>Pick Up Soccer Rules</h3>
 										</header>
 										<p>
-											Basic soccer rules for beginners:					
+											Basic soccer rules for beginners:<br>
+											We have adopted the San Francisco Pickup Soccer rules, which can be found at: <br>
+											<a href="http://sfpickupsoccer.com/what-is-pickup-soccer/" target="_BLANK">Pickup Soccer Rules</a>
 										</p>
 									</section>
 									
@@ -125,7 +127,9 @@
 											<h3>Pick Up Baseball Rules</h3>
 										</header>
 										<p>
-											Basic baseball rules for beginners:					
+											Basic baseball rules for beginners:	<br>
+											Please refer to the facility hosting the game for pickup rules. Each facility may defer in the 
+											exact set of rules they adhere to.
 										</p>
 									</section>
 									
@@ -136,7 +140,9 @@
 											<h3>Pick Up Basketball Rules</h3>
 										</header>
 										<p>
-											Basic basketball rules for beginners:					
+											Basic basketball rules for beginners:<br>
+											We have adopted the LiveStrong Pickup Basketball rules, which can be found at: <br>
+											<a href="http://www.livestrong.com/article/148344-pick-up-basketball-rules/" target="_BLANK">Pickup Basketball Rules</a>											
 										</p>
 									</section>
 
