@@ -172,12 +172,6 @@
 									</section>
 									
 									
-									<section>
-										<header>
-											<h2>Search for a User<h2>
-										</header>
-										
-									</section>
 
 								
 									
