@@ -59,6 +59,7 @@
 											<tr><td>Name of event: </td><td><input type = "text", name = "event"></td></tr>
 											<tr><td>Date:</td><td><input type = "date", name = "date"></td></tr>
 											<tr><td>Time:</td><td><input type = "time", name = "time"></td></tr>
+											<input name="isHidden", value="yes", hidden='true'>
 											<?php
 												#Get the supported sports
 												$query1 = "SELECT sport_name FROM sports";
@@ -179,6 +180,7 @@
 															$("input[toHide='yes']").show();
 															$("input[name='addFacility']").attr('value', 'Use an Existing Facility');
 															$("select[name='location']").hide();
+															$("input[name='isHidden']").val('no');
 														};
 
 														function subtract(){
@@ -191,6 +193,7 @@
 															$("input[toHide='yes']").hide();
 															$("input[name='addFacility']").attr('value', 'Add a New Facility');
 															$("select[name='location']").show();
+															$("input[name='isHidden']").val('yes');
 														};
 													});
 

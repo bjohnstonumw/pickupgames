@@ -10,11 +10,29 @@ $newFacName = mysqli_real_escape_string($db, trim($_POST['newFacName']));
 $newFacAddress = mysqli_real_escape_string($db, trim($_POST['newFacAddress']));
 $newFacZip = mysqli_real_escape_string($db, trim($_POST['newFacZip']));
 $ad = mysqli_real_escape_string($db, trim($_POST['ad']));
+$isHidden = mysqli_real_escape_string($db, trim($_POST['isHidden']));
 
-if($newFacName==''||$newFacAddress==''||$newFacZip==''){
+
+if($isHidden=='yes'){
+	if($name==''||$date==''||$time==''||$ad==''){
+
+		echo "<input type=button id=back value='Back'>";
+		echo '<br><br>Please fill all fields';
+
+	}
+	else{
+		$query = "INSERT INTO events VALUES (null,'$name','$date','$time', '$loc','$sport','$ad')";
+		$result = mysqli_query($db,$query) or die("Error Querying Database: Submit Event Result1");
+		echo '<META http-equiv="refresh" content="0;URL=../joinevent.php">';
+	}
+
+}
+else if($isHidden=='no'){
+if($newFacName==''||$newFacAddress==''||$newFacZip==''||$name==''||$date==''||$time==''||$ad==''){
 
 echo "<input type=button id=back value='Back'>";
-echo '<br>All three facility inputs must be filled to add a new facility';
+echo '<br><br>Please fill all fields';
+
 }
 else{
 $query2 = "INSERT INTO facilities VALUES (null, '$newFacName', '$newFacAddress', '$newFacZip')";
@@ -27,10 +45,12 @@ $loc = $row['fac_id'];
 
 $query = "INSERT INTO events VALUES (null,'$name','$date','$time', '$loc','$sport','$ad')";
 $result = mysqli_query($db,$query) or die("Error Querying Database: Submit Event Result1");
-
 echo '<META http-equiv="refresh" content="0;URL=../joinevent.php">';
 }
-
+}
+else{
+	echo "This is hidden: $isHidden";
+}
 
 
 ?>
