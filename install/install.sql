@@ -30,12 +30,6 @@ CREATE TABLE us_zips (
 
 LOAD DATA INFILE '../../htdocs/pickupgames/install/zipcodes.csv' INTO TABLE us_zips FIELDS TERMINATED BY ',';
 
-CREATE TABLE IF NOT EXISTS basicusers (
-	b_username VARCHAR(20) NOT NULL,
-	password VARCHAR(40) NOT NULL,
-	PRIMARY KEY (b_username)
-);
-
 /* now contains atomic user information*/
 CREATE TABLE IF NOT EXISTS users (
 	username VARCHAR(12) NOT NULL,
@@ -149,10 +143,6 @@ CREATE VIEW view_friends AS SELECT u.username id, uf.* FROM friends f
 /*
 *Fill tables with demo data
 */
-
-/*users, AKA Site Administrators*/
-INSERT INTO basicusers VALUES ('admin', sha('changeme'));
-
 
 /*Client users, AKA regular site users*/ 
 INSERT INTO users VALUES ('josiah', sha('josiah'), 22485, 'Josiah Neuberger', '30', 'profile_pics/josiah.jpg', 'M');

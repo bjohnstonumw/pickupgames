@@ -107,7 +107,7 @@ if (!isset($_SESSION)) { session_start(); }
 									<?php
 										if (isset($_GET['action']) and $_GET['action'] == 'createAccount') {
 											echo "<p><label for='zipcode'>ZipCode:</label>
-											<input type='number' id='zipcode' name='zipcode' size=40 /></p>
+											<input type='number' id='zipcode' name='zipcode' size=40 />You must enter a valid zipcode or your account will not be created!</p>
 											
 											<p><input type='submit' value='Create Account' name='submit' /></p>";
 										
